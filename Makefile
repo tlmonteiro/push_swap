@@ -1,0 +1,35 @@
+NAME = push_swap.a
+
+C_SOURCES =
+
+BONUS_SOURCES =
+
+OBJ = $(C_SOURCES:.c=.o)
+
+OBJ_BONUS = $(BONUS_SOURCES:.c=.o)
+
+CREATE = @ar -rc
+
+REMOVE = @rm -f
+
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror -g
+
+all: $(NAME)
+
+$(NAME):	$(OBJ)
+			$(CREATE) $(NAME) $(OBJ)
+
+bonus:	$(NAME) $(OBJ_BONUS)
+		$(CREATE) $(NAME) $(OBJ_BONUS)
+
+clean:
+		$(REMOVE) *.o
+
+fclean:	clean
+		$(REMOVE) $(NAME)
+
+re:	clean all
+
+.PHONY: all bonus clean fclean re
