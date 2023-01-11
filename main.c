@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/11 11:52:53 by tlemos-m         ###   ########.fr       */
+/*   Created: 2023/01/11 11:53:24 by tlemos-m          #+#    #+#             */
+/*   Updated: 2023/01/11 16:35:20 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_list **stack)
+int	main(int argc, char **argv)
 {
+	int	i;
 
+	i = 0;
+	if (argc > 1)
+	{
+		while (argv[i])
+		{
+			check_input(argv[i]);
+			i++;
+		}
+	}
+	return (0);
 }

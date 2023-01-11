@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_movements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/11 11:52:53 by tlemos-m         ###   ########.fr       */
+/*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
+/*   Updated: 2023/01/11 11:52:47 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_list **stack)
+void	swap(t_list	**stack)
+{
+
+}
+
+void	push(t_list **stack)
+{
+
+}
+
+void	rotate(t_list **stack)
 {
 
 }
