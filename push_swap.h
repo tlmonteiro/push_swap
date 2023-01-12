@@ -26,12 +26,12 @@ typedef struct s_list
 }					t_list;
 
 int				main(int argc, char **argv);
-char			*check_input(const char *nptr);
-t_list			*ps_lstnew(struct s_list **stack, int value, int rank);
+long int		*check_input(const char *nptr);
+t_list			*ps_lstnew(struct s_list **stack, long int value);
 t_list			*ps_lstlast(t_list *stack);
 void			ps_lstadd_back(t_list **stack, t_list *node);
 int				ft_isdigit(int c);
-long int		ft_atoi(const char *nptr);
+long int		ft_atoli(const char *nptr);
 void			push_swap(t_list **stack);
 void			swap(t_list **stack);
 void			push(t_list **stack);

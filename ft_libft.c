@@ -13,21 +13,37 @@
 #include "push_swap.h"
 
 int				ft_isdigit(int c);
-long int		ft_atoi(const char *nptr);
+long int		ft_atoli(const char *nptr);
 
-char	*check_input(const char *nptr)
+t_list **parse_arg(char **argv, int argc)
 {
-	int	i;
-	int	value;
+	struct s_list	**stack_a;
+
+	*stack_a = malloc(sizeof(t_list) * (argc + 1));
+	while (argv[i])
+	{
+		if(!check_input(argv[i]))
+			break ;
+		i++;
+	}
+	return (*stack_a);
+}
+
+long int	*check_input(const char *nptr)
+{
+	int				i;
+	int				value;
 
 	i = 0;
-	if (nptr[i] == "-" || nptr[i] == "+" && !ft_isdigit(nptr[i + 1]))
+	if (nptr[0] == '-' || nptr[0] == '+' && !ft_isdigit(nptr[1]))
 	{
 		write (2, "Error\n", 6);
 		return (0);
 	}
 	while (nptr[i])
 	{
+		if (nptr[0] == '-')
+			i++;
 		if (!ft_isdigit(nptr[i]))
 		{
 			write (2, "Error\n", 6);
@@ -35,23 +51,23 @@ char	*check_input(const char *nptr)
 		}
 		i++;
 	}
-	i = 0;
-	if (ft_atoi(nptr[i]) < INT_MIN || ft_atoi(nptr[i]) > INT_MAX)
+	if (!ft_atoi(nptr))
 	{
-		write (2, "Error\n", 6);
+		write(2, "Error\n", 6);
 		return (0);
 	}
-	return (0);
+	value = ft_atoi(nptr);
+	return (value);
 }
 
 int	ft_isdigit(int c)
 {
-	if (c < 48 || c > 57)
+	if (c >= 48 && c <= 57)
 		return (c);
 	return (0);
 }
 
-long int	ft_atoi(const char *nptr)
+long int	ft_atoli(const char *nptr)
 {
 	int			i;
 	int			s;
@@ -60,7 +76,7 @@ long int	ft_atoi(const char *nptr)
 	i = 0;
 	s = 1;
 	res = 0;
-	if (nptr[i] == "-")
+	if (nptr[i] == '-')
 	{
 		s *= -1;
 		i++;
@@ -70,5 +86,7 @@ long int	ft_atoi(const char *nptr)
 		res = ((res * 10) + (nptr[i] - '0'));
 		i++;
 	}
+	if ((res * s) > INT_MAX || (res * s) < INT_MIN)
+		return (0);
 	return (res * s);
 }

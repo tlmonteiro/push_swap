@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_list	*ps_lstnew(struct s_list **stack, int value, int rank)
+t_list	*ps_lstnew(struct s_list **stack, long int value)
 {
 	t_list	*node;
 

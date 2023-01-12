@@ -19,11 +19,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc > 1)
 	{
-		while (argv[i])
-		{
-			check_input(argv[i]);
-			i++;
-		}
+		parse_arg(argv, argc);
 	}
 	return (0);
 }
