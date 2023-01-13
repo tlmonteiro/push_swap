@@ -6,24 +6,23 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/11 15:50:55 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:31:32 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ps_lstnew(struct s_list **stack, long int value)
+t_list	*ps_lstnew(long int value)
 {
-	t_list	*node;
+	t_list	*new;
 
-	node = malloc(sizeof(t_list));
-	if (!node)
+	new = malloc(sizeof(t_list));
+	if (!new)
 		return ;
-	node->value = value;
-	node->rank = rank;
-	node->next = NULL;
-	ps_lstadd_back(*stack, node);
-	return (node);
+	new->value = value;
+	//new->rank = rank;
+	new->next = NULL;
+	return (new);
 }
 
 t_list	*ps_lstlast(t_list *stack)

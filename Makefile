@@ -1,6 +1,6 @@
 NAME = push_swap.a
 
-C_SOURCES = main.c lst_utils.c push_swap.c ps_movements.c ft_libft.c
+C_SOURCES = main.c parse_utils.c lst_utils.c push_swap.c ps_movements.c ft_libft.c
 
 BONUS_SOURCES =
 
