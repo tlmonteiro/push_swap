@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/13 10:31:32 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:55:55 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_list	*ps_lstnew(long int value)
 	if (!new)
 		return ;
 	new->value = value;
+	new->prev = NULL;
 	//new->rank = rank;
 	new->next = NULL;
 	return (new);
@@ -27,14 +28,16 @@ t_list	*ps_lstnew(long int value)
 
 t_list	*ps_lstlast(t_list *stack)
 {
-	int	i;
+	int		i;
+	t_list	*temp;
 
 	i = 1;
+	temp = stack;
 	if (!stack)
 		return (0);
-	while (stack->next != NULL)
-		stack = stack->next;
-	return (stack);
+	while (temp->next != NULL)
+		temp = temp->next;
+	return (temp);
 }
 
 void	ps_lstadd_back(t_list **stack, t_list *node)
@@ -47,5 +50,22 @@ void	ps_lstadd_back(t_list **stack, t_list *node)
 		return ;
 	}
 	temp = ps_lstlast(*stack);
+	node->prev = temp;
 	temp->next = node;
+}
+
+int	ps_lstsize(t_list *stack)
+{
+	int		i;
+	t_list	*temp;
+
+	temp = stack;
+	if (!stack)
+		return (0);
+	while (temp)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
 }
