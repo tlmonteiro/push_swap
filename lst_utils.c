@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_list	*ps_lstnew(long int value)
+t_list	*ps_lstnew(long long value)
 {
 	t_list	*new;
 
@@ -20,8 +20,7 @@ t_list	*ps_lstnew(long int value)
 	if (!new)
 		return (0);
 	new->value = value;
-	new->prev = NULL;
-	//new->rank = rank;
+	new->rank = 1;
 	new->next = NULL;
 	return (new);
 }
@@ -48,7 +47,6 @@ void	ps_lstadd_back(t_list **stack, t_list *node)
 		return ;
 	}
 	temp = ps_lstlast(*stack);
-	node->prev = temp;
 	temp->next = node;
 }
 

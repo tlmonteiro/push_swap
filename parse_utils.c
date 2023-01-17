@@ -14,16 +14,17 @@
 
 int			check_input(char *nptr);
 int			check_doubles(char **argv);
-void		free_list(t_list *stack);
+void		initialize_stack(t_list **stack_a, long long value);
+void		free_stack(t_list **stack);
 
 t_list	**parse_arg(char **argv)
 {
-	t_list		**stack_a;
 	int			i;
 	long long	value;
+	t_list		**stack;
 
-	stack_a = NULL;
 	i = 1;
+	stack = NULL;
 	while (argv[i])
 	{
 		if (check_input(argv[i]) == 0)
@@ -33,16 +34,37 @@ t_list	**parse_arg(char **argv)
 		}
 		i++;
 	}
-
 	i = 1;
 	while (argv[i])
 	{
 		value = ft_atoll(argv[i]);
-		//printf("%lld\n", value);
-		ps_lstadd_back(stack_a, ps_lstnew(value));
+		initialize_stack(stack, value);
 		i++;
 	}
-	return (stack_a);
+	return (stack);
+}
+
+void	initialize_stack(t_list **stack_a, long long value)
+{
+	t_list	*new_node;
+
+	new_node = ps_lstnew(value);
+	if (stack_a && !new_node)
+		free_stack(stack_a);
+	ps_lstadd_back(stack_a, new_node);
+	return ;
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*temp;
+
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(stack);
+		*stack = temp;
+	}
 }
 
 int	check_doubles(char **argv)

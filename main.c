@@ -14,6 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+	t_list	**stack;
 	if (argc > 1)
 	{
 		if (argc > 2)
@@ -21,7 +22,12 @@ int	main(int argc, char **argv)
 			if (check_doubles(argv) == 0)
 				exit(0);
 		}
-		parse_arg(argv);
+		*stack = parse_arg(argv);
+		while ((*stack)->next != NULL)
+		{
+			printf("Value: %lld\n", (*stack)->value);
+			*stack = (*stack)->next;
+		}
 	}
 	return (0);
 }
