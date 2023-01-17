@@ -21,21 +21,21 @@
 typedef struct s_list
 {
 	struct s_list	*prev;
-	int				*value;
-	int				*rank;
+	long int		value;
+	int				rank;
 	struct s_list	*next;
 }					t_list;
 
 int				main(int argc, char **argv);
-t_list			**parse_arg(char **argv, int argc);
-void			check_doubles(t_list *stack);
-long int		check_input(const char *nptr);
+t_list			**parse_arg(char **argv);
+int				check_doubles(char **argv);
+int				check_input(const char *nptr);
 t_list			*ps_lstnew(long int value);
 t_list			*ps_lstlast(t_list *stack);
 void			ps_lstadd_back(t_list **stack, t_list *node);
 int				ps_lstsize(t_list *stack);
 int				ft_isdigit(int c);
-long int		ft_atoli(const char *nptr);
+long long		ft_atoll(const char *nptr);
 void			push_swap(t_list **stack);
 void			swap(t_list **stack);
 void			push(t_list **stack);

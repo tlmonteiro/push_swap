@@ -18,7 +18,7 @@ t_list	*ps_lstnew(long int value)
 
 	new = malloc(sizeof(t_list));
 	if (!new)
-		return ;
+		return (0);
 	new->value = value;
 	new->prev = NULL;
 	//new->rank = rank;
@@ -28,10 +28,8 @@ t_list	*ps_lstnew(long int value)
 
 t_list	*ps_lstlast(t_list *stack)
 {
-	int		i;
 	t_list	*temp;
 
-	i = 1;
 	temp = stack;
 	if (!stack)
 		return (0);

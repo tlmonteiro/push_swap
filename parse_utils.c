@@ -12,92 +12,77 @@
 
 #include "push_swap.h"
 
-long int	check_input(const char *nptr);
-void		check_doubles(t_list *stack);
+int			check_input(const char *nptr);
+int			check_doubles(char **argv);
+void		free_list(t_list *stack);
 
-t_list	**parse_arg(char **argv, int argc)
+t_list	**parse_arg(char **argv)
 {
 	t_list		**stack_a;
 	int			i;
-	long int	value;
+	long long	value;
 
-	*stack_a = NULL;
+	stack_a = NULL;
+	i = 0;
 	while (argv[i])
 	{
-		if (!check_input(argv[i]))
+		if (check_input(argv[i]) == 0)
+		{
+			write(2, "Error\n", 6);
 			exit(0);
+		}
 		i++;
 	}
 	i = 0;
 	while (argv[i])
 	{
-		value = ft_atoli(argv[i]);
-		ps_lstadd_back(*stack_a, ps_lstnew(value));
+		value = ft_atoll(argv[i]);
+		printf("%lld\n", value);
+		//ps_lstadd_back(stack_a, ps_lstnew(value));
 		i++;
 	}
-	return (*stack_a);
+	return (stack_a);
 }
 
-void	check_doubles(t_list *stack)
+int	check_doubles(char **argv)
 {
-	t_list	*temp;
-	t_list	*temp_1;
+	int	i;
+	int	j;
 
-	temp = stack;
-	while (temp)
+	i = 0;
+	while (argv[i])
 	{
-		temp_1 = temp->next;
-		while (temp_1)
+		j = i + 1;
+		while(argv[j])
 		{
-			if (temp->value == temp_1->value)
+			if(ft_atoll(argv[i]) == ft_atoll(argv[j]))
 			{
-				free_list(stack);
-				free_list(temp);
-				free_list(temp_1);
 				write(2, "Error\n", 6);
-				exit(0);
+				return (0);
 			}
-			temp_1 = temp_1->next;
+			j++;
 		}
-		temp = temp->next;
+		i++;
 	}
-	free_list(temp);
-	free_list(temp_1);
-	return ;
+	return (1);
 }
 
-long int	check_input(const char *nptr)
+int	check_input(const char *nptr)
 {
-	int				i;
-	int				value;
+	int	i;
 
 	i = 0;
 	if ((nptr[i] == '-' || nptr[i] == '+') && !ft_isdigit(nptr[i + 1]))
-		return (write(2, "Error\n", 6));
+		return (0);
 	while (nptr[i])
 	{
 		if (nptr[i] == '-')
 			i++;
 		if (!ft_isdigit(nptr[i]))
-			return (write(2, "Error\n", 6));
+			return (0);
 		i++;
 	}
-	if (!ft_atoli(nptr))
-		return (write(2, "Error\n", 6));
-	value = ft_atoli(nptr);
-	return (value);
-}
-
-void	free_list(t_list *stack)
-{
-	t_list	*temp;
-
-	while (stack)
-	{
-		temp = stack->next;
-		free(stack);
-		temp = temp->next;
-	}
-	free(temp);
-	return ;
+	if (ft_atoll(nptr) < INT_MIN || ft_atoll(nptr) > INT_MAX)
+		return (0);
+	return (1);
 }

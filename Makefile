@@ -1,14 +1,16 @@
 NAME = push_swap.a
 
-C_SOURCES = main.c parse_utils.c lst_utils.c push_swap.c ps_movements.c ft_libft.c
+LIB = push_swap.h
 
-BONUS_SOURCES =
+C_SOURCES = parse_utils.c lst_utils.c ft_libft.c
+
+#BONUS_SOURCES =
 
 OBJ = $(C_SOURCES:.c=.o)
 
-OBJ_BONUS = $(BONUS_SOURCES:.c=.o)
+#OBJ_BONUS = $(BONUS_SOURCES:.c=.o)
 
-CREATE = @ar -rc
+CREATE = @ar -rcs
 
 REMOVE = @rm -f
 
@@ -19,10 +21,10 @@ CFLAGS = -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME):	$(OBJ)
-			$(CREATE) $(NAME) $(OBJ)
+			$(CREATE) $(NAME) $(OBJ) $(LIB)
 
-bonus:	$(NAME) $(OBJ_BONUS)
-		$(CREATE) $(NAME) $(OBJ_BONUS)
+#bonus:	$(NAME) $(OBJ_BONUS)
+#		$(CREATE) $(NAME) $(OBJ_BONUS)
 
 clean:
 		$(REMOVE) *.o
@@ -31,5 +33,8 @@ fclean:	clean
 		$(REMOVE) $(NAME)
 
 re:	clean all
+
+run: 
+		$(CC) $(CFLAGS) main.c $(NAME) -o push_swap -fsanitize=address
 
 .PHONY: all bonus clean fclean re

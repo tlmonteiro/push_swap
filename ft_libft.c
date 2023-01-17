@@ -19,7 +19,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-long int	ft_atoli(const char *nptr)
+long long	ft_atoll(const char *nptr)
 {
 	int			i;
 	int			s;
@@ -38,7 +38,5 @@ long int	ft_atoli(const char *nptr)
 		res = ((res * 10) + (nptr[i] - '0'));
 		i++;
 	}
-	if ((res * s) > INT_MAX || (res * s) < INT_MIN)
-		return (0);
 	return (res * s);
 }
