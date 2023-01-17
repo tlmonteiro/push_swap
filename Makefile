@@ -14,7 +14,7 @@ CREATE = @ar -rcs
 
 REMOVE = @rm -f
 
-CC = cc
+CC = @cc
 
 CFLAGS = -Wall -Wextra -Werror -g
 

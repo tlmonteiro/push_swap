@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int			check_input(const char *nptr);
+int			check_input(char *nptr);
 int			check_doubles(char **argv);
 void		free_list(t_list *stack);
 
@@ -23,7 +23,7 @@ t_list	**parse_arg(char **argv)
 	long long	value;
 
 	stack_a = NULL;
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		if (check_input(argv[i]) == 0)
@@ -33,12 +33,13 @@ t_list	**parse_arg(char **argv)
 		}
 		i++;
 	}
-	i = 0;
+
+	i = 1;
 	while (argv[i])
 	{
 		value = ft_atoll(argv[i]);
-		printf("%lld\n", value);
-		//ps_lstadd_back(stack_a, ps_lstnew(value));
+		//printf("%lld\n", value);
+		ps_lstadd_back(stack_a, ps_lstnew(value));
 		i++;
 	}
 	return (stack_a);
@@ -49,7 +50,7 @@ int	check_doubles(char **argv)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		j = i + 1;
@@ -67,22 +68,24 @@ int	check_doubles(char **argv)
 	return (1);
 }
 
-int	check_input(const char *nptr)
+int	check_input(char *nptr)
 {
 	int	i;
+	int	value;
 
 	i = 0;
 	if ((nptr[i] == '-' || nptr[i] == '+') && !ft_isdigit(nptr[i + 1]))
 		return (0);
+	if (nptr[i] == '-')
+		i++;
 	while (nptr[i])
 	{
-		if (nptr[i] == '-')
-			i++;
 		if (!ft_isdigit(nptr[i]))
 			return (0);
 		i++;
 	}
-	if (ft_atoll(nptr) < INT_MIN || ft_atoll(nptr) > INT_MAX)
+	value = ft_atoll(nptr);
+	if (value < INT_MIN || value > INT_MAX)
 		return (0);
 	return (1);
 }

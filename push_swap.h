@@ -29,7 +29,7 @@ typedef struct s_list
 int				main(int argc, char **argv);
 t_list			**parse_arg(char **argv);
 int				check_doubles(char **argv);
-int				check_input(const char *nptr);
+int				check_input(char *nptr);
 t_list			*ps_lstnew(long int value);
 t_list			*ps_lstlast(t_list *stack);
 void			ps_lstadd_back(t_list **stack, t_list *node);

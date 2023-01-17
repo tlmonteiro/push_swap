@@ -14,9 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-	if (c >= 48 && c <= 57)
-		return (c);
-	return (0);
+	return (c >= 48 && c <= 57);
 }
 
 long long	ft_atoll(const char *nptr)

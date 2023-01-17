@@ -16,8 +16,11 @@ int	main(int argc, char **argv)
 {
 	if (argc > 1)
 	{
-		if (check_doubles(argv) == 0)
-			exit(0);
+		if (argc > 2)
+		{
+			if (check_doubles(argv) == 0)
+				exit(0);
+		}
 		parse_arg(argv);
 	}
 	return (0);
