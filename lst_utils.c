@@ -6,13 +6,13 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/13 11:55:55 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:49:19 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ps_lstnew(long long value)
+t_list	*ps_lstnew(int value)
 {
 	t_list	*new;
 
@@ -20,8 +20,9 @@ t_list	*ps_lstnew(long long value)
 	if (!new)
 		return (0);
 	new->value = value;
-	new->rank = 1;
-	new->next = NULL;
+	new->rank = 0;
+	new->prev = 0;
+	new->next = 0;
 	return (new);
 }
 
@@ -47,7 +48,9 @@ void	ps_lstadd_back(t_list **stack, t_list *node)
 		return ;
 	}
 	temp = ps_lstlast(*stack);
+	node->prev = temp;
 	temp->next = node;
+	return ;
 }
 
 int	ps_lstsize(t_list *stack)
@@ -56,6 +59,7 @@ int	ps_lstsize(t_list *stack)
 	t_list	*temp;
 
 	temp = stack;
+	i = 0;
 	if (!stack)
 		return (0);
 	while (temp)
@@ -64,4 +68,12 @@ int	ps_lstsize(t_list *stack)
 		temp = temp->next;
 	}
 	return (i);
+}
+
+void	get_final_rank(t_list **stack)
+{
+	int		min_value;
+
+	min_value = get_min(stack);
+	return ;
 }

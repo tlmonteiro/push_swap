@@ -1,0 +1,8 @@
+push_swap:
+1.Check input
+2.Initialize stack A
+3.Find rank for stack nodes;
+4.Make Movements
+5.Sort small numbers (3 and 5)
+	a)Find out if it would be a good idea to use doubly linked lists
+6.Sort major numbers

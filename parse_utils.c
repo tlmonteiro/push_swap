@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/13 13:24:08 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:50:00 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int			check_input(char *nptr);
 int			check_doubles(char **argv);
-void		initialize_stack(t_list **stack_a, long long value);
+void		initialize_stack(t_list **stack_a, int value);
 void		free_stack(t_list **stack);
 
-t_list	**parse_arg(char **argv)
+t_list	*parse_arg(char **argv, int argc)
 {
 	int			i;
-	long long	value;
-	t_list		**stack;
+	int			value;
+	t_list		*stack;
 
 	i = 1;
-	stack = NULL;
+	stack = 0;
 	while (argv[i])
 	{
 		if (check_input(argv[i]) == 0)
@@ -35,21 +35,22 @@ t_list	**parse_arg(char **argv)
 		i++;
 	}
 	i = 1;
-	while (argv[i])
+	while (i < argc)
 	{
-		value = ft_atoll(argv[i]);
-		initialize_stack(stack, value);
+		value = ft_atoi(argv[i]);
+		initialize_stack(&stack, value);
 		i++;
 	}
+	get_final_rank(&stack);
 	return (stack);
 }
 
-void	initialize_stack(t_list **stack_a, long long value)
+void	initialize_stack(t_list **stack_a, int value)
 {
 	t_list	*new_node;
 
 	new_node = ps_lstnew(value);
-	if (stack_a && !new_node)
+	if (!new_node)
 		free_stack(stack_a);
 	ps_lstadd_back(stack_a, new_node);
 	return ;
@@ -61,10 +62,13 @@ void	free_stack(t_list **stack)
 
 	while (*stack)
 	{
-		temp = (*stack)->next;
-		free(stack);
-		*stack = temp;
+		temp = *stack;
+		*stack = (*stack)->next;
+		temp->next = 0;
+		free(temp);
 	}
+	*stack = 0;
+	return ;
 }
 
 int	check_doubles(char **argv)
@@ -76,9 +80,9 @@ int	check_doubles(char **argv)
 	while (argv[i])
 	{
 		j = i + 1;
-		while(argv[j])
+		while (argv[j])
 		{
-			if(ft_atoll(argv[i]) == ft_atoll(argv[j]))
+			if (ft_atoll(argv[i]) == ft_atoll(argv[j]))
 			{
 				write(2, "Error\n", 6);
 				return (0);
