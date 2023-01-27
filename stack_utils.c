@@ -12,32 +12,33 @@
 
 #include "push_swap.h"
 
-int	get_min(t_list **stack)
+void	get_rank(t_list *stack)
 {
-	int		min;
-	int		new_min;
+	int	final_rank;
 	t_list	*temp;
+	t_list	*node;
 
-	min = 1;
-	new_min = 1;
-	temp = ps_lstlast(*stack);
-	while (temp->prev != NULL)
+	node = stack;
+	temp = NULL;
+	final_rank = 1;
+	while (node)
 	{
-		if (temp->value < temp->prev->value)
+		final_rank = 1;
+		temp = stack;
+		while (temp)
 		{
-			new_min = temp->value;
-			if (temp->value < min)
-				min = temp->value;
-			temp->rank = ps_lstsize(temp->prev);
+			if (node->value == temp->value)
+			{
+				if (temp->next == NULL)
+					break ;
+				temp = temp->next;
+			}
+			if (node->value > temp->value)
+				final_rank += 1;
+			temp = temp->next;
 		}
-		else if (temp->next != NULL)
-			temp->rank = ps_lstsize(*stack);
-		else
-			temp->rank = ps_lstsize(temp);
-		temp = temp->prev;
+		node->rank = final_rank;
+		node = node->next;
 	}
-	temp->rank = 1;
-	min = temp->value;
-	new_min = min;
-	return (min);
+	return ;
 }

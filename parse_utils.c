@@ -41,7 +41,7 @@ t_list	*parse_arg(char **argv, int argc)
 		initialize_stack(&stack, value);
 		i++;
 	}
-	get_final_rank(&stack);
+	get_rank(stack);
 	return (stack);
 }
 

@@ -27,12 +27,13 @@ int	main(int argc, char **argv)
 		}
 		stack = parse_arg(argv, argc);
 		temp = stack;
-		printf("Stack A:\n");
 		while (temp != NULL)
 		{
 			printf("Value: %d\tRank: %d\n", temp->value, temp->rank);
 			temp = temp->next;
 		}
+		printf("---\t\t\t\n");
+		printf("a\t\t\t\n");
 		free_stack(&stack);
 	}
 	return (0);

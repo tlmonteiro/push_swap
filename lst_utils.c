@@ -69,11 +69,3 @@ int	ps_lstsize(t_list *stack)
 	}
 	return (i);
 }
-
-void	get_final_rank(t_list **stack)
-{
-	int		min_value;
-
-	min_value = get_min(stack);
-	return ;
-}
