@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 12:16:42 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:52:49 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ t_list	*parse_arg(char **argv, int argc)
 {
 	int			i;
 	int			value;
-	t_list		*stack;
+	t_list		*stack_a;
+	t_list		*stack_b;
 
 	i = 1;
-	stack = 0;
+	stack_a = 0;
+	stack_b = 0;
 	while (i < argc)
 	{
 		if (check_input(argv[i]) == 0)
@@ -33,12 +35,12 @@ t_list	*parse_arg(char **argv, int argc)
 			exit(0);
 		}
 		value = ft_atoi(argv[i]);
-		initialize_stack(&stack, value);
+		initialize_stack(&stack_a, value);
 		i++;
 	}
-	get_rank(stack);
-	rotate(&stack, 'a');
-	return (stack);
+	get_rank(stack_a);
+	push(&stack_a, &stack_b, 'a');
+	return (stack_a);
 }
 
 void	initialize_stack(t_list **stack_a, int value)
