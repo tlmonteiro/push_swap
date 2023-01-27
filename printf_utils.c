@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 11:53:24 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 11:26:42 by tlemos-m         ###   ########.fr       */
+/*   Created: 2023/01/27 11:19:04 by tlemos-m          #+#    #+#             */
+/*   Updated: 2023/01/27 11:25:17 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	print_stack(t_list **stack)
 {
-	t_list	*stack;
+	t_list	*temp;
 
-	stack = 0;
-	if (argc > 1)
+	temp = *stack;
+	while (temp != NULL)
 	{
-		if (argc > 2)
-		{
-			if (check_doubles(argv) == 0)
-				exit(0);
-		}
-		stack = parse_arg(argv, argc);
+		printf("Value: %d\tRank: %d\n", temp->value, temp->rank);
+		temp = temp->next;
 	}
-	return (0);
+	printf("---\t\t\t\n");
+	printf("a\t\t\t\n");
+	return ;
 }

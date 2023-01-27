@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ps_double_moves.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 11:53:24 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 11:26:42 by tlemos-m         ###   ########.fr       */
+/*   Created: 2023/01/27 11:38:23 by tlemos-m          #+#    #+#             */
+/*   Updated: 2023/01/27 12:17:11 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+/*void	double_swap(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*stack;
-
-	stack = 0;
-	if (argc > 1)
-	{
-		if (argc > 2)
-		{
-			if (check_doubles(argv) == 0)
-				exit(0);
-		}
-		stack = parse_arg(argv, argc);
-	}
-	return (0);
+	print_stack(stack_a);
+	print_stack(stack_b);
+	swap(stack_a, 's');
+	swap(stack_b, 's');
+	printf("ss\n");
 }
+
+void	double_rotate(t_list **stack_a, t_list **stack_b)
+{
+	rotate(stack_a, 'r');
+	rotate(stack_b, 'r');
+	printf("rr\n");
+	return ;
+}
+
+void	double_reverse_rotate(t_list **stack_a, t_list **stack_b)
+{
+	return ;
+}*/

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/19 14:22:40 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:16:26 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,21 @@ int				check_doubles(char **argv);
 int				check_input(char *nptr);
 t_list			*ps_lstnew(int value);
 t_list			*ps_lstlast(t_list *stack);
+void			ps_lstadd_front(t_list **stack, t_list *node);
 void			ps_lstadd_back(t_list **stack, t_list *node);
 int				ps_lstsize(t_list *stack);
 void			get_rank(t_list *stack);
+int				update_rank(t_list *temp, t_list *node, int rank);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
 void			push_swap(t_list **stack);
-void			swap(t_list **stack);
-void			push(t_list **stack);
-void			rotate(t_list **stack);
+void			swap(t_list **stack, char letter);
+//void			push(t_list **stack_a, t_list **stack_b, char letter);
+void			rotate(t_list **stack, char letter);
+//void			double_swap(t_list **stack_a, t_list **stack_b);
+//void			double_rotate(t_list **stack_a, t_list **stack_b);
+//void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
+void			print_stack(t_list **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/19 14:49:19 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:54:31 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ t_list	*ps_lstlast(t_list *stack)
 	return (temp);
 }
 
+void	ps_lstadd_front(t_list **stack, t_list *node)
+{
+	if (!stack)
+	{
+		*stack = node;
+		return ;
+	}
+	node->next = *stack;
+	*stack = node;
+}
+
 void	ps_lstadd_back(t_list **stack, t_list *node)
 {
 	t_list	*temp;
@@ -50,7 +61,6 @@ void	ps_lstadd_back(t_list **stack, t_list *node)
 	temp = ps_lstlast(*stack);
 	node->prev = temp;
 	temp->next = node;
-	return ;
 }
 
 int	ps_lstsize(t_list *stack)
