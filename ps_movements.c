@@ -16,7 +16,7 @@ void	swap(t_list	**stack, char letter)
 {
 	t_list	*temp;
 
-	print_stack(stack);
+	print_stack(stack, letter);
 	temp = (*stack)->next;
 	(*stack)->prev = temp;
 	(*stack)->next = temp->next;
@@ -27,34 +27,49 @@ void	swap(t_list	**stack, char letter)
 		printf("sa\n");
 	if (letter == 'b')
 		printf("sb\n");
-	print_stack(stack);
+	print_stack(stack, letter);
 	return ;
 }
 
-void	push(t_list **stack_a, t_list **stack_b, char letter)
+void	push_a(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*temp;
 
-	if (letter == 'a')
+	temp = *stack_a;
+	if ((*stack_a)->next == NULL)
 	{
-		temp = *stack_a;
+		*stack_a = NULL;
 		temp->next = NULL;
+	}	
+	else
+	{
 		*stack_a = (*stack_a)->next;
 		(*stack_a)->prev = NULL;
-		ps_lstadd_front(stack_b, temp);
-		printf("pa");
-		print_stack(stack_a);
-		print_stack(stack_b);
 	}
-	if (letter == 'b')
-	{
-		temp = *stack_b;
-		temp->next = NULL;
-		*stack_b = (*stack_b)->next;
-		(*stack_b)->prev = NULL;
+	ps_lstadd_front(stack_b, temp);
+	printf("pa\n");
+	print_stack(stack_a, 'a');
+	print_stack(stack_b, 'b');
+	return ;
+}
+
+void	push_b(t_list **stack_a, t_list **stack_b)
+{
+	t_list	*temp;
+
+	temp = *stack_b;
+		if ((*stack_b)->next == NULL)
+		{
+			*stack_b = NULL;
+			temp->next = NULL;
+		}	
+		else
+		{
+			*stack_b = (*stack_b)->next;
+			(*stack_b)->prev = NULL;
+		}
 		ps_lstadd_front(stack_a, temp);
-		printf("pb");
-	}
+		printf("pb\n");
 	return ;
 }
 
@@ -74,7 +89,7 @@ void	rotate(t_list **stack, char letter)
 		printf("ra\n");
 	if (letter == 'b')
 		printf("rb\n");
-	print_stack(stack);
+	print_stack(stack, letter);
 	return ;
 }
 
@@ -94,6 +109,6 @@ void	reverse_rotate(t_list **stack, char letter)
 		printf("rra\n");
 	if (letter == 'b')
 		printf("rrb\n");
-	print_stack(stack);
+	print_stack(stack, letter);
 	return ;
 }

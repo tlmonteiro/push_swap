@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-void	print_stack(t_list **stack)
+void	print_stack(t_list **stack, char letter)
 {
 	t_list	*temp;
 
 	temp = *stack;
 	while (temp != NULL)
 	{
-		printf("Value: %d\tRank: %d\n", temp->value, temp->rank);
+		printf("%d\t rank: %d\n", temp->value, temp->rank);
 		temp = temp->next;
 	}
 	printf("---\t\t\t\n");
-	printf("a\t\t\t\n");
+	printf("%c\t\t\t\n\n", letter);
 	return ;
 }

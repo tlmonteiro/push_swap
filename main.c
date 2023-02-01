@@ -25,6 +25,9 @@ int	main(int argc, char **argv)
 				exit(0);
 		}
 		stack = parse_arg(argv, argc);
+		if (stack != 0)
+			printf("done\n");
+		free_stack(&stack);
 	}
 	return (0);
 }

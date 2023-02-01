@@ -39,7 +39,11 @@ t_list	*parse_arg(char **argv, int argc)
 		i++;
 	}
 	get_rank(stack_a);
-	push(&stack_a, &stack_b, 'a');
+	push_a(&stack_a, &stack_b);
+	push_a(&stack_a, &stack_b);
+	push_a(&stack_a, &stack_b);
+	push_a(&stack_a, &stack_b);
+	free_stack(&stack_b);
 	return (stack_a);
 }
 

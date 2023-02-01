@@ -44,12 +44,13 @@ long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
 void			push_swap(t_list **stack);
 void			swap(t_list **stack, char letter);
-void			push(t_list **stack_a, t_list **stack_b, char letter);
+void			push_a(t_list **stack_a, t_list **stack_b);
+void			push_b(t_list **stack_a, t_list **stack_b);
 void			rotate(t_list **stack, char letter);
 void			reverse_rotate(t_list **stack, char letter);
 //void			double_swap(t_list **stack_a, t_list **stack_b);
 //void			double_rotate(t_list **stack_a, t_list **stack_b);
 //void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
-void			print_stack(t_list **stack);
+void			print_stack(t_list **stack_a, char letter);
 
 #endif
