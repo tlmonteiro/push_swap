@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   moves_counter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/02 13:09:07 by tlemos-m         ###   ########.fr       */
+/*   Created: 2023/02/02 11:01:04 by tlemos-m          #+#    #+#             */
+/*   Updated: 2023/02/02 13:04:59 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_list **stack)
+//DO ROTATION if return < 0
+//DO REVERSE ROTATION if return > 0
+int	moves_to_top(t_list *stack)
 {
-	int	rank;
+	int		counter;
+	int		r_counter;
+	t_list	*temp;
 
-	rank = 0;
-	if (check_sorted(stack) == 0)
+	counter = 0;
+	temp = stack;
+	while (temp->prev != NULL)
 	{
-		rank = check_min_moves(stack);
+		temp = temp->prev;
+		counter++;
 	}
-	printf("desired node rank: %i\n", rank);
-	return ;
+	if (counter == 0)
+		return (counter);
+	temp = stack;
+	r_counter = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		r_counter++;
+	}
+	if (counter <= r_counter)
+		return (counter);
+	else
+		return (r_counter * -1);
 }

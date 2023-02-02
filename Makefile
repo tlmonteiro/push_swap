@@ -2,8 +2,8 @@ NAME = push_swap.a
 
 LIB = push_swap.h
 
-C_SOURCES = parse_utils.c lst_utils.c ft_libft.c stack_utils.c ps_moves.c \
-			printf_utils.c ps_double_moves.c push_swap.c
+C_SOURCES = parse_utils.c lst_utils.c ft_libft.c moves_counter.c stack_utils.c \
+			ps_moves.c printf_utils.c ps_double_moves.c push_swap.c
 
 #BONUS_SOURCES =
 

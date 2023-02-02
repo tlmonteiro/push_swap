@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/02 10:33:14 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:08:31 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,34 @@ int	check_sorted(t_list **stack)
 		temp = temp->next;
 		i++;
 	}
+	if (i == 0)
+		printf("not sorted!\n");
+	else
+		printf("already sorted!\n");
 	return (i);
 }
 
-/*int	check_min_moves(t_list **stack)
+int	check_min_moves(t_list **stack)
 {
-	int		i;
+	int		moves;
+	int		min_moves;
+	int		rank;
 	t_list	*temp;
 
-	i = 0;
 	temp = *stack;
-}*/
+	min_moves = 0;
+	rank = temp->rank;
+	while (temp)
+	{
+		moves = moves_to_top(temp);
+		if (moves < 0)
+			moves *= moves;
+		if (moves < min_moves)
+		{
+			min_moves = moves;
+			rank = temp->rank;
+		}
+		temp = temp->next;
+	}
+	return (rank);
+}
