@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/27 14:50:39 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:24:20 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void			ps_lstadd_back(t_list **stack, t_list *node);
 int				ps_lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				update_rank(t_list *temp, t_list *node, int rank);
+int				check_sorted(t_list **stack);
+//int				check_min_moves(t_list **stack);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
@@ -48,9 +50,9 @@ void			push_a(t_list **stack_a, t_list **stack_b);
 void			push_b(t_list **stack_a, t_list **stack_b);
 void			rotate(t_list **stack, char letter);
 void			reverse_rotate(t_list **stack, char letter);
-//void			double_swap(t_list **stack_a, t_list **stack_b);
-//void			double_rotate(t_list **stack_a, t_list **stack_b);
-//void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
+void			double_swap(t_list **stack_a, t_list **stack_b);
+void			double_rotate(t_list **stack_a, t_list **stack_b);
+void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
 void			print_stack(t_list **stack_a, char letter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 14:59:47 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:48:07 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 	t_list	*temp;
 
 	temp = *stack_b;
-		if ((*stack_b)->next == NULL)
-		{
-			*stack_b = NULL;
-			temp->next = NULL;
-		}	
-		else
-		{
-			*stack_b = (*stack_b)->next;
-			(*stack_b)->prev = NULL;
-		}
-		ps_lstadd_front(stack_a, temp);
-		printf("pb\n");
+	if ((*stack_b)->next == NULL)
+	{
+		*stack_b = NULL;
+		temp->next = NULL;
+	}	
+	else
+	{
+		*stack_b = (*stack_b)->next;
+		(*stack_b)->prev = NULL;
+	}
+	ps_lstadd_front(stack_a, temp);
+	printf("pb\n");
 	return ;
 }
 

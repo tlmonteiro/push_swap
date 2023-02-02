@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 14:52:49 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:25:04 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,7 @@ t_list	*parse_arg(char **argv, int argc)
 		i++;
 	}
 	get_rank(stack_a);
-	push_a(&stack_a, &stack_b);
-	push_a(&stack_a, &stack_b);
-	push_a(&stack_a, &stack_b);
-	push_a(&stack_a, &stack_b);
-	free_stack(&stack_b);
+	push_swap(&stack_a);
 	return (stack_a);
 }
 
