@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:59:50 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/19 10:34:45 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/03 14:28:00 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	ft_isdigit(int c)
 long long	ft_atoll(const char *nptr)
 {
 	int			i;
-	int			s;
-	long int	res;
+	long long	s;
+	long long	res;
 
 	i = 0;
 	s = 1;

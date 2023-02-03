@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/02 10:25:04 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/03 14:33:34 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ int	check_doubles(char **argv)
 
 int	check_input(char *nptr)
 {
-	int	i;
-	int	value;
+	int			i;
+	long long	value;
 
 	i = 0;
-	if ((nptr[i] == '-' || nptr[i] == '+') && !ft_isdigit(nptr[i + 1]))
+	if ((nptr[i] == '-') && !ft_isdigit(nptr[i + 1]))
 		return (0);
 	if (nptr[i] == '-')
 		i++;
