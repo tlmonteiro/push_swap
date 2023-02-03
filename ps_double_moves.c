@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:38:23 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/02 09:58:29 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/03 14:06:30 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	double_reverse_rotate(t_list **stack_a, t_list **stack_b)
 {
 	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
-	rotate(stack_a, 'r');
-	rotate(stack_b, 'r');
+	reverse_rotate(stack_a, 'r');
+	reverse_rotate(stack_b, 'r');
 	printf("rrr\n");
 	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
