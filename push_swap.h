@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/02 13:06:04 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:39:30 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ void			initialize_stack(t_list **stack_a, int value);
 void			free_stack(t_list **stack);
 int				check_doubles(char **argv);
 int				check_input(char *nptr);
-t_list			*ps_lstnew(int value);
-t_list			*ps_lstlast(t_list *stack);
-void			ps_lstadd_front(t_list **stack, t_list *node);
-void			ps_lstadd_back(t_list **stack, t_list *node);
-int				ps_lstsize(t_list *stack);
+t_list			*lstnew(int value);
+t_list			*lstlast(t_list *stack);
+void			lstadd_front(t_list **stack, t_list *node);
+void			lstadd_back(t_list **stack, t_list *node);
+int				lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				update_rank(t_list *temp, t_list *node, int rank);
 int				check_sorted(t_list **stack);
-int				check_min_moves(t_list **stack);
-int				moves_to_top(t_list *stack);
+int				check_min_moves(t_list **stack, int argc);
+int				moves_to_top(t_list *stack, int argc);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
-void			push_swap(t_list **stack);
+void			push_swap(t_list **stack, int argc);
 void			swap(t_list **stack, char letter);
 void			push_a(t_list **stack_a, t_list **stack_b);
 void			push_b(t_list **stack_a, t_list **stack_b);
@@ -55,5 +55,7 @@ void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
 void			print_stack(t_list **stack_a, char letter);
+void			sort_three(t_list **stack);
+//void			sort_five(t_list **stack_a, t_list **stack_b);
 
 #endif

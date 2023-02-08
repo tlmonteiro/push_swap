@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_movements.c                                     :+:      :+:    :+:   */
+/*   ps_moves.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/02 09:48:07 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:53:50 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	swap(t_list	**stack, char letter)
 {
 	t_list	*temp;
 
-	print_stack(stack, letter);
 	temp = (*stack)->next;
 	(*stack)->prev = temp;
 	(*stack)->next = temp->next;
@@ -27,7 +26,6 @@ void	swap(t_list	**stack, char letter)
 		printf("sa\n");
 	if (letter == 'b')
 		printf("sb\n");
-	print_stack(stack, letter);
 	return ;
 }
 
@@ -46,7 +44,7 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 		*stack_a = (*stack_a)->next;
 		(*stack_a)->prev = NULL;
 	}
-	ps_lstadd_front(stack_b, temp);
+	lstadd_front(stack_b, temp);
 	printf("pa\n");
 	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
@@ -68,7 +66,7 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 		*stack_b = (*stack_b)->next;
 		(*stack_b)->prev = NULL;
 	}
-	ps_lstadd_front(stack_a, temp);
+	lstadd_front(stack_a, temp);
 	printf("pb\n");
 	return ;
 }
@@ -80,7 +78,7 @@ void	rotate(t_list **stack, char letter)
 
 	first = (*stack)->next;
 	first->prev = NULL;
-	last = ps_lstlast(*stack);
+	last = lstlast(*stack);
 	(*stack)->next = NULL;
 	(*stack)->prev = last;
 	last->next = *stack;
@@ -89,7 +87,6 @@ void	rotate(t_list **stack, char letter)
 		printf("ra\n");
 	if (letter == 'b')
 		printf("rb\n");
-	print_stack(stack, letter);
 	return ;
 }
 
@@ -98,7 +95,7 @@ void	reverse_rotate(t_list **stack, char letter)
 	t_list	*temp;
 	t_list	*last;
 
-	temp = ps_lstlast(*stack);
+	temp = lstlast(*stack);
 	last = temp->prev;
 	last->next = NULL;
 	temp->next = *stack;
@@ -109,6 +106,5 @@ void	reverse_rotate(t_list **stack, char letter)
 		printf("rra\n");
 	if (letter == 'b')
 		printf("rrb\n");
-	print_stack(stack, letter);
 	return ;
 }

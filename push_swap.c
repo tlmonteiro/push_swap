@@ -6,21 +6,26 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/02 13:09:07 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:55:10 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_swap(t_list **stack)
+void	push_swap(t_list **stack, int argc)
 {
-	int	rank;
+	int		flag;
+	t_list	*temp;
 
-	rank = 0;
-	if (check_sorted(stack) == 0)
+	temp = *stack;
+	flag = check_sorted(stack);
+	if (argc == 4)
 	{
-		rank = check_min_moves(stack);
+		while (flag == 0)
+		{
+			sort_three(stack);
+			flag = check_sorted(stack);
+		}
 	}
-	printf("desired node rank: %i\n", rank);
 	return ;
 }

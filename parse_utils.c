@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/03 14:33:34 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/08 12:51:55 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list	*parse_arg(char **argv, int argc)
 		i++;
 	}
 	get_rank(stack_a);
-	push_swap(&stack_a);
+	push_swap(&stack_a, argc);
 	return (stack_a);
 }
 
@@ -47,10 +47,10 @@ void	initialize_stack(t_list **stack_a, int value)
 {
 	t_list	*new_node;
 
-	new_node = ps_lstnew(value);
+	new_node = lstnew(value);
 	if (!new_node)
 		free_stack(stack_a);
-	ps_lstadd_back(stack_a, new_node);
+	lstadd_back(stack_a, new_node);
 	return ;
 }
 

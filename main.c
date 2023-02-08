@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:53:24 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 11:26:42 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:57:23 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	main(int argc, char **argv)
 				exit(0);
 		}
 		stack = parse_arg(argv, argc);
-		if (stack != 0)
-			printf("done\n");
 		free_stack(&stack);
 	}
 	return (0);
