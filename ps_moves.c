@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/08 14:53:50 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:32:54 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	swap(t_list	**stack, char letter)
 	t_list	*temp;
 
 	temp = (*stack)->next;
+	(*stack)->next->next->prev = *stack;
 	(*stack)->prev = temp;
 	(*stack)->next = temp->next;
 	temp->next = *stack;
@@ -97,9 +98,9 @@ void	reverse_rotate(t_list **stack, char letter)
 
 	temp = lstlast(*stack);
 	last = temp->prev;
+	temp->prev = NULL;
 	last->next = NULL;
 	temp->next = *stack;
-	temp->prev = NULL;
 	(*stack)->prev = temp;
 	*stack = temp;
 	if (letter == 'a')

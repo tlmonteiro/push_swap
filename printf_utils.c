@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:19:04 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/01/27 14:48:53 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:23:32 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	print_stack(t_list **stack, char letter)
 	temp = *stack;
 	while (temp != NULL)
 	{
-		printf("%d\t rank: %d\n", temp->value, temp->rank);
+		if (temp->prev != NULL)
+			printf("%d\trank: %d\tprev: %d\n", temp->value,
+				temp->rank, temp->prev->value);
+		else
+			printf("%d\trank: %d\n", temp->value, temp->rank);
 		temp = temp->next;
 	}
 	printf("---\t\t\t\n");

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/08 14:50:54 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/10 12:53:25 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	sort_three(t_list **stack)
 	first = (*stack)->rank;
 	mid = (*stack)->next->rank;
 	last = lstlast(*stack)->rank;
-	if (first > last && mid < last)
+	if (first > mid && mid > last)
+		swap(stack, 'a');
+	else if (first > last && mid < last)
 		rotate(stack, 'a');
-	if (first > mid && mid < last)
+	else if (first > mid && mid < last)
 		swap(stack, 'a');
 	else if (first < mid && mid > last)
 		reverse_rotate(stack, 'a');

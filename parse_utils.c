@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/08 12:51:55 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:20:17 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	free_stack(t_list **stack)
 	{
 		temp = *stack;
 		*stack = (*stack)->next;
+		temp->prev = 0;
 		temp->next = 0;
 		free(temp);
 	}
