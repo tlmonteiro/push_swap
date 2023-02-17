@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/10 14:32:54 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:28:21 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 	}
 	lstadd_front(stack_b, temp);
 	printf("pa\n");
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
 	return ;
 }
 

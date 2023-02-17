@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/08 14:39:30 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:07:17 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int				update_rank(t_list *temp, t_list *node, int rank);
 int				check_sorted(t_list **stack);
 int				check_min_moves(t_list **stack, int argc);
 int				moves_to_top(t_list *stack, int argc);
+int				put_in_place(t_list **stack, int rank);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
@@ -56,6 +57,7 @@ void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
 void			print_stack(t_list **stack_a, char letter);
 void			sort_three(t_list **stack);
-//void			sort_five(t_list **stack_a, t_list **stack_b);
+void			sort_five(t_list **stack_a, t_list **stack_b);
+void			check_stack(t_list **stack_a, t_list **stack_b);
 
 #endif

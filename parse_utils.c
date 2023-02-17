@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 10:11:11 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/10 13:20:17 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:12:12 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ t_list	*parse_arg(char **argv, int argc)
 	int			i;
 	int			value;
 	t_list		*stack_a;
-	t_list		*stack_b;
 
 	i = 1;
 	stack_a = 0;
-	stack_b = 0;
 	while (i < argc)
 	{
 		if (check_input(argv[i]) == 0)

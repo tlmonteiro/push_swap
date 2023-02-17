@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/08 14:54:07 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:07:19 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ int	update_rank(t_list *temp, t_list *node, int rank)
 int	check_sorted(t_list **stack)
 {
 	t_list	*temp;
+	t_list	*t_next;
 	int		i;
 
-	temp = *stack;
+	t_next = (*stack)->next;
 	i = 1;
-	while (temp)
+	while (t_next != NULL)
 	{
-		if (temp->rank != i)
+		temp = t_next->prev;
+		if (t_next->rank < temp->rank)
 		{
 			i = 0;
 			break ;
 		}
+		t_next = t_next->next;
 		temp = temp->next;
 		i++;
 	}
