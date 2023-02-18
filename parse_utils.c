@@ -22,9 +22,11 @@ t_list	*parse_arg(char **argv, int argc)
 	int			i;
 	int			value;
 	t_list		*stack_a;
+	t_list		*stack_b;
 
 	i = 1;
 	stack_a = 0;
+	stack_b = 0;
 	while (i < argc)
 	{
 		if (check_input(argv[i]) == 0)
@@ -36,8 +38,8 @@ t_list	*parse_arg(char **argv, int argc)
 		initialize_stack(&stack_a, value);
 		i++;
 	}
-	get_rank(stack_a);
-	push_swap(&stack_a, argc);
+	//get_rank(stack_a);
+	push_swap(&stack_a, &stack_b, argc);
 	return (stack_a);
 }
 
@@ -59,10 +61,15 @@ void	free_stack(t_list **stack)
 	while (*stack)
 	{
 		temp = *stack;
-		*stack = (*stack)->next;
+		if ((*stack)->next != 0)
+		{
+			*stack = (*stack)->next;
+			temp->next = 0;
+		}
 		temp->prev = 0;
-		temp->next = 0;
 		free(temp);
+		if (!(*stack)->next)
+			break ;
 	}
 	*stack = 0;
 	return ;

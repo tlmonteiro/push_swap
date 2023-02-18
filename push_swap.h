@@ -46,7 +46,7 @@ int				put_in_place(t_list **stack, int rank);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
-void			push_swap(t_list **stack, int argc);
+void			push_swap(t_list **stack_a, t_list **stack_b, int argc);
 void			swap(t_list **stack, char letter);
 void			push_a(t_list **stack_a, t_list **stack_b);
 void			push_b(t_list **stack_a, t_list **stack_b);

@@ -15,13 +15,16 @@
 void	swap(t_list	**stack, char letter)
 {
 	t_list	*temp;
+	t_list	*last;
 
 	temp = (*stack)->next;
+	last = lstlast(*stack);
+	temp->prev = last;
+	last->next = temp;
 	(*stack)->next->next->prev = *stack;
 	(*stack)->prev = temp;
-	(*stack)->next = temp->next;
+	(*stack)->next = (*stack)->next->next;
 	temp->next = *stack;
-	temp->prev = NULL;
 	*stack = temp;
 	if (letter == 'a')
 		printf("sa\n");
@@ -35,7 +38,7 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 	t_list	*temp;
 
 	temp = *stack_a;
-	if ((*stack_a)->next == NULL)
+	if ((*stack_a)->next == *stack_a)
 	{
 		*stack_a = NULL;
 		temp->next = NULL;
@@ -43,7 +46,10 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 	else
 	{
 		*stack_a = (*stack_a)->next;
-		(*stack_a)->prev = NULL;
+		(*stack_a)->prev = temp->prev;
+		temp->prev->next = *stack_a;
+		temp->next = 0;
+		temp->prev = 0;
 	}
 	lstadd_front(stack_b, temp);
 	printf("pa\n");
@@ -55,15 +61,15 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 	t_list	*temp;
 
 	temp = *stack_b;
-	if ((*stack_b)->next == NULL)
+	if ((*stack_b)->next == *stack_b)
 	{
-		*stack_b = NULL;
-		temp->next = NULL;
+		*stack_b = 0;
+		temp->next = 0;
 	}	
 	else
 	{
 		*stack_b = (*stack_b)->next;
-		(*stack_b)->prev = NULL;
+		(*stack_b)->prev = lstlast(*stack_b);
 	}
 	lstadd_front(stack_a, temp);
 	printf("pb\n");
@@ -72,16 +78,7 @@ void	push_b(t_list **stack_a, t_list **stack_b)
 
 void	rotate(t_list **stack, char letter)
 {
-	t_list	*first;
-	t_list	*last;
-
-	first = (*stack)->next;
-	first->prev = NULL;
-	last = lstlast(*stack);
-	(*stack)->next = NULL;
-	(*stack)->prev = last;
-	last->next = *stack;
-	*stack = first;
+	*stack = (*stack)->next;
 	if (letter == 'a')
 		printf("ra\n");
 	if (letter == 'b')
@@ -91,16 +88,7 @@ void	rotate(t_list **stack, char letter)
 
 void	reverse_rotate(t_list **stack, char letter)
 {
-	t_list	*temp;
-	t_list	*last;
-
-	temp = lstlast(*stack);
-	last = temp->prev;
-	temp->prev = NULL;
-	last->next = NULL;
-	temp->next = *stack;
-	(*stack)->prev = temp;
-	*stack = temp;
+	*stack = (*stack)->prev;
 	if (letter == 'a')
 		printf("rra\n");
 	if (letter == 'b')

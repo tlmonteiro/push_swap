@@ -33,34 +33,55 @@ t_list	*lstlast(t_list *stack)
 	temp = stack;
 	if (!stack)
 		return (0);
-	while (temp->next != NULL)
+	while (temp)
+	{
+		if (temp->next == stack)
+			break ;
 		temp = temp->next;
+	}
 	return (temp);
 }
 
 void	lstadd_front(t_list **stack, t_list *node)
 {
+	t_list	*temp;
+
 	if (!stack)
 	{
 		*stack = node;
+		(*stack)->next = node;
+		(*stack)->prev = node;
 		return ;
 	}
-	node->next = *stack;
-	*stack = node;
+	else
+	{
+		temp = (*stack)->next;
+		node->next = temp;
+		node->prev = *stack;
+		(*stack)->next->prev = node;
+		(*stack)->next = node;
+		*stack = node;
+	}
+	return ;
 }
 
 void	lstadd_back(t_list **stack, t_list *node)
 {
-	t_list	*temp;
+	t_list	*head;
 
 	if (!*stack)
 	{
 		*stack = node;
+		(*stack)->next = node;
+		(*stack)->prev = node;
 		return ;
 	}
-	temp = lstlast(*stack);
-	node->prev = temp;
-	temp->next = node;
+	head = *stack;
+	if ((*stack)->prev != *stack)
+		*stack = (*stack)->prev;
+	lstadd_front(stack, node);
+	*stack = head;
+	return ;
 }
 
 int	lstsize(t_list *stack)
@@ -75,6 +96,8 @@ int	lstsize(t_list *stack)
 	while (temp)
 	{
 		i++;
+		if (temp->next == stack)
+			break ;
 		temp = temp->next;
 	}
 	return (i);

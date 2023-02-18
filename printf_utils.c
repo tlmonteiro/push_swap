@@ -17,14 +17,13 @@ void	print_stack(t_list **stack, char letter)
 	t_list	*temp;
 
 	temp = *stack;
-	while (temp != NULL)
+	while (temp)
 	{
-		if (temp->prev != NULL)
-			printf("%d\trank: %d\tprev: %d\n", temp->value,
-				temp->rank, temp->prev->value);
-		else
-			printf("%d\trank: %d\n", temp->value, temp->rank);
+		printf("prev: %d\tvalue: %d\tnext: %d\t\n", temp->prev->value,
+			temp->value, temp->next->value);
 		temp = temp->next;
+		if (temp == *stack)
+			break ;
 	}
 	printf("---\t\t\t\n");
 	printf("%c\t\t\t\n\n", letter);
