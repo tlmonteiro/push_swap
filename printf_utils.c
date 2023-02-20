@@ -19,10 +19,9 @@ void	print_stack(t_list **stack, char letter)
 	temp = *stack;
 	while (temp)
 	{
-		printf("prev: %d\tvalue: %d\tnext: %d\t\n", temp->prev->value,
-			temp->value, temp->next->value);
+		printf("value: %d\trank: %d\t\n", temp->value, temp->rank);
 		temp = temp->next;
-		if (temp == *stack)
+		if (temp->value == (*stack)->value)
 			break ;
 	}
 	printf("---\t\t\t\n");

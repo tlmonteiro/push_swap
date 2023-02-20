@@ -46,22 +46,19 @@ void	lstadd_front(t_list **stack, t_list *node)
 {
 	t_list	*temp;
 
-	if (!stack)
+	if (!*stack)
 	{
 		*stack = node;
 		(*stack)->next = node;
 		(*stack)->prev = node;
 		return ;
 	}
-	else
-	{
-		temp = (*stack)->next;
-		node->next = temp;
-		node->prev = *stack;
-		(*stack)->next->prev = node;
-		(*stack)->next = node;
-		*stack = node;
-	}
+	temp = (*stack)->next;
+	node->next = temp;
+	node->prev = *stack;
+	(*stack)->next->prev = node;
+	(*stack)->next = node;
+	*stack = node;
 	return ;
 }
 

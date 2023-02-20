@@ -17,16 +17,12 @@ int			check_doubles(char **argv);
 void		initialize_stack(t_list **stack_a, int value);
 void		free_stack(t_list **stack);
 
-t_list	*parse_arg(char **argv, int argc)
+t_list	*parse_arg(t_list *stack, char **argv, int argc)
 {
 	int			i;
 	int			value;
-	t_list		*stack_a;
-	t_list		*stack_b;
 
 	i = 1;
-	stack_a = 0;
-	stack_b = 0;
 	while (i < argc)
 	{
 		if (check_input(argv[i]) == 0)
@@ -35,12 +31,11 @@ t_list	*parse_arg(char **argv, int argc)
 			exit(0);
 		}
 		value = ft_atoi(argv[i]);
-		initialize_stack(&stack_a, value);
+		initialize_stack(&stack, value);
 		i++;
 	}
-	//get_rank(stack_a);
-	push_swap(&stack_a, &stack_b, argc);
-	return (stack_a);
+	get_rank(stack);
+	return (stack);
 }
 
 void	initialize_stack(t_list **stack_a, int value)

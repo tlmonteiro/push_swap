@@ -35,8 +35,8 @@ void	sort_three(t_list **stack)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	push_a(stack_a, stack_b);
-	push_a(stack_a, stack_b);
+	push(stack_a, stack_b, 'a');
+	push(stack_a, stack_b, 'a');
 	while (check_sorted(stack_a) == 0)
 		sort_three(stack_a);
 	check_stack(stack_a, stack_b);
@@ -58,6 +58,6 @@ void	check_stack(t_list **stack_a, t_list **stack_b)
 		if (!((*stack_b)->rank == ((*stack_a)->rank - 1)))
 			put_in_place(stack_a, (*stack_b)->rank);
 	}
-	push_b(stack_a, stack_b);
+	push(stack_b, stack_a, 'b');
 	return ;
 }

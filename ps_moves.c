@@ -33,46 +33,24 @@ void	swap(t_list	**stack, char letter)
 	return ;
 }
 
-void	push_a(t_list **stack_a, t_list **stack_b)
+void	push(t_list **src, t_list **dest, char letter)
 {
 	t_list	*temp;
 
-	temp = *stack_a;
-	if ((*stack_a)->next == *stack_a)
-	{
-		*stack_a = NULL;
-		temp->next = NULL;
-	}	
+	temp = *src;
+	if ((*src)->next->value == (*src)->value)
+		*src = 0;
 	else
 	{
-		*stack_a = (*stack_a)->next;
-		(*stack_a)->prev = temp->prev;
-		temp->prev->next = *stack_a;
-		temp->next = 0;
-		temp->prev = 0;
+		*src = (*src)->next;
+		(*src)->prev = temp->prev;
+		temp->prev->next = *src;
 	}
-	lstadd_front(stack_b, temp);
-	printf("pa\n");
-	return ;
-}
-
-void	push_b(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*temp;
-
-	temp = *stack_b;
-	if ((*stack_b)->next == *stack_b)
-	{
-		*stack_b = 0;
-		temp->next = 0;
-	}	
-	else
-	{
-		*stack_b = (*stack_b)->next;
-		(*stack_b)->prev = lstlast(*stack_b);
-	}
-	lstadd_front(stack_a, temp);
-	printf("pb\n");
+	lstadd_front(dest, temp);
+	if (letter == 'a')
+		printf("pa\n");
+	if (letter == 'b')
+		printf("pb\n");
 	return ;
 }
 

@@ -14,9 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack;
-
-	stack = 0;
 	if (argc > 1)
 	{
 		if (argc > 2)
@@ -24,8 +21,7 @@ int	main(int argc, char **argv)
 			if (check_doubles(argv) == 0)
 				exit(0);
 		}
-		stack = parse_arg(argv, argc);
-		free_stack(&stack);
+		push_swap(argv, argc);
 	}
 	return (0);
 }

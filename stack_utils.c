@@ -12,64 +12,54 @@
 
 #include "push_swap.h"
 
-int	update_rank(t_list *temp, t_list *node, int rank);
-
 void	get_rank(t_list *stack)
 {
-	int		final_rank;
-	t_list	*temp;
+	int		rank;
+	t_list	*head;
 	t_list	*node;
 
+	head = stack;
 	node = stack;
-	temp = NULL;
-	while (node)
+	while (stack)
 	{
-		final_rank = 1;
-		temp = stack;
-		final_rank = update_rank(temp, node, final_rank);
-		node->rank = final_rank;
-		node = node->next;
+		rank = 1;
+		node = head;
+		while (node)
+		{
+			if (stack->value > node->value)
+				rank += 1;
+			node = node->next;
+			if (node == head)
+				break ;
+		}
+		stack->rank = rank;
+		stack = stack->next;
+		if (stack == head)
+			break ;
 	}
 	return ;
 }
 
-int	update_rank(t_list *temp, t_list *node, int rank)
-{
-	while (temp)
-	{
-		if (node->value == temp->value)
-		{
-			if (temp->next == NULL)
-				break ;
-			temp = temp->next;
-		}
-		if (node->value > temp->value)
-			rank += 1;
-		temp = temp->next;
-	}
-	return (rank);
-}
-
 int	check_sorted(t_list **stack)
 {
-	t_list	*temp;
-	t_list	*t_next;
+	t_list	*head;
 	int		i;
 
-	t_next = (*stack)->next;
+	head = *stack;
 	i = 1;
-	while (t_next != NULL)
+	while (*stack)
 	{
-		temp = t_next->prev;
-		if (t_next->rank < temp->rank)
+		if ((*stack)->rank > (*stack)->next->rank)
 		{
 			i = 0;
 			break ;
 		}
-		t_next = t_next->next;
-		temp = temp->next;
+		*stack = (*stack)->next;
 		i++;
+		if ((*stack)->next == head)
+			break ;
 	}
+	*stack = head;
 	return (i);
 }
 
@@ -77,17 +67,20 @@ int	check_min_moves(t_list **stack, int argc)
 {
 	int		moves;
 	int		rank;
-	t_list	*temp;
+	t_list	*head;
 
-	temp = *stack;
-	rank = temp->rank;
-	while (temp)
+	head = *stack;
+	rank = (*stack)->rank;
+	while (*stack)
 	{
-		moves = moves_to_top(temp, argc);
+		moves = moves_to_top(*stack, argc);
 		if (moves < 0)
 			moves *= -1;
 		printf("moves to top: %i\n", moves);
-		temp = temp->next;
+		*stack = (*stack)->next;
+		if (*stack == head)
+			break ;
 	}
+	*stack = head;
 	return (rank);
 }
