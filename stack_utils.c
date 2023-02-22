@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/17 11:07:19 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:27:04 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,4 @@ int	check_sorted(t_list **stack)
 	}
 	*stack = head;
 	return (i);
-}
-
-int	check_min_moves(t_list **stack, int argc)
-{
-	int		moves;
-	int		rank;
-	t_list	*head;
-
-	head = *stack;
-	rank = (*stack)->rank;
-	while (*stack)
-	{
-		moves = moves_to_top(*stack, argc);
-		if (moves < 0)
-			moves *= -1;
-		printf("moves to top: %i\n", moves);
-		*stack = (*stack)->next;
-		if (*stack == head)
-			break ;
-	}
-	*stack = head;
-	return (rank);
 }

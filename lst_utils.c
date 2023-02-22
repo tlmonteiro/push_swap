@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/08 12:38:35 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:18:09 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_list	*lstlast(t_list *stack)
 
 void	lstadd_front(t_list **stack, t_list *node)
 {
-	t_list	*temp;
-
 	if (!*stack)
 	{
 		*stack = node;
@@ -53,8 +51,7 @@ void	lstadd_front(t_list **stack, t_list *node)
 		(*stack)->prev = node;
 		return ;
 	}
-	temp = (*stack)->next;
-	node->next = temp;
+	node->next = (*stack)->next;
 	node->prev = *stack;
 	(*stack)->next->prev = node;
 	(*stack)->next = node;

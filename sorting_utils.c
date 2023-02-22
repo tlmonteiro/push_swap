@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/17 11:11:16 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:21:48 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,39 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	{
 		if ((*stack_a)->rank == 1)
 			break ;
+		if ((*stack_a)->rank <= 3)
+			reverse_rotate(stack_a, 'a');
 		else
 			rotate(stack_a, 'a');
+		print_stack(stack_a, 'a');
 	}
 	return ;
 }
 
 void	check_stack(t_list **stack_a, t_list **stack_b)
 {
-	if ((*stack_b)->rank <= lstsize(*stack_a))
+	int		flag;
+	t_list	*head_a;
+
+	flag = 0;
+	head_a = *stack_a;
+	while (*stack_a)
 	{
-		if (!((*stack_b)->rank == ((*stack_a)->rank - 1)))
-			put_in_place(stack_a, (*stack_b)->rank);
+		if ((*stack_b)->rank < head_a->rank)
+			break ;
+		else if ((*stack_b)->rank == (lstsize(*stack_a) + lstsize(*stack_b))
+			&& (*stack_a)->rank == 1)
+			break ;
+		else if ((*stack_a)->prev->rank < (*stack_b)->rank
+			&& (*stack_a)->rank > (*stack_b)->rank)
+			break ;
+		flag++;
+		*stack_a = (*stack_a)->next;
+		if (*stack_a == head_a)
+			break ;
 	}
+	*stack_a = head_a;
+	check_helper(stack_a, flag);
 	push(stack_b, stack_a, 'b');
 	return ;
 }

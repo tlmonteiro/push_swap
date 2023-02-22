@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/17 10:07:17 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:15:12 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void			lstadd_back(t_list **stack, t_list *node);
 int				lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
-int				check_min_moves(t_list **stack, int argc);
-int				moves_to_top(t_list *stack, int argc);
+void			check_helper(t_list **stack, int flag);
 int				put_in_place(t_list **stack, int rank);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);

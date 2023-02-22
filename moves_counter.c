@@ -6,52 +6,36 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:01:04 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/17 10:22:24 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:14:39 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//DO ROTATION if return < 0
-//DO REVERSE ROTATION if return > 0
-int	moves_to_top(t_list *stack, int argc)
+void	check_helper(t_list **stack, int flag)
 {
-	int		counter;
-	t_list	*temp;
-
-	counter = 0;
-	temp = stack;
-	while (temp->prev != NULL)
-	{
-		counter++;
-		temp = temp->prev;
-	}
-	if (counter == 0)
-		return (counter);
-	if (counter > ((argc - 1) / 2))
-		counter = (argc - counter - 1) * -1;
-	return (counter);
+	while (flag != 0)
+		flag = put_in_place(stack, flag);
+	*stack = (*stack)->prev;
+	return ;
 }
 
-int	put_in_place(t_list **stack, int rank)
+int	put_in_place(t_list **stack, int counter)
 {
-	int		counter;
-	t_list	*temp;
+	int	size;
 
-	counter = 0;
-	temp = *stack;
-	while (temp)
+	size = lstsize(*stack);
+	if (counter > (size / 2))
 	{
-		if (temp->rank == rank)
-			break ;
-		counter++;
-		temp = temp->next;
-	}
-	if (counter > (lstsize(*stack) / 2))
 		reverse_rotate(stack, 'a');
+		counter++;
+	}
 	else if (counter != 0)
+	{
 		rotate(stack, 'a');
-	if (counter != 0)
-		put_in_place(stack, rank);
+		counter--;
+	}
+	if (counter >= size)
+		counter = 0;
 	return (counter);
 }
