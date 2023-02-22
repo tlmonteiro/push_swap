@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/22 17:21:48 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:37:16 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,15 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 			reverse_rotate(stack_a, 'a');
 		else
 			rotate(stack_a, 'a');
-		print_stack(stack_a, 'a');
 	}
 	return ;
 }
+
+/* void	sort_hundreds(t_list **stack_a, t_list **stack_b)
+{
+	print_stack(stack_a, 'a');
+	return ;
+} */
 
 void	check_stack(t_list **stack_a, t_list **stack_b)
 {

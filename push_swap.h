@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 17:15:12 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:37:27 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
+# ifndef SLICE
+#  define SLICE range
+# endif
 
 typedef struct s_list
 {
@@ -55,6 +58,7 @@ void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
 void			print_stack(t_list **stack_a, char letter);
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
+//void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			check_stack(t_list **stack_a, t_list **stack_b);
 
 #endif
