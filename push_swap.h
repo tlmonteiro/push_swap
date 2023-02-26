@@ -42,7 +42,10 @@ void			lstadd_back(t_list **stack, t_list *node);
 int				lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
-int				put_in_place(t_list **stack, int rank);
+void			check_to_pull(t_list **stack_a, t_list **stack_b);
+void			check_to_push(t_list *stack_a, t_list **stack_b);
+int				put_in_place(t_list **stack, char letter, int rank);
+int				count_moves(int rank, t_list *stack);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
@@ -59,7 +62,6 @@ void			print_stack(t_list **stack_a, char letter);
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
-void			check_stack(t_list **stack_a, t_list **stack_b);
 void			pivoting(t_list **stack_a, t_list **stack_b, int size);
 
 #endif

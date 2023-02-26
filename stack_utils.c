@@ -62,3 +62,53 @@ int	check_sorted(t_list **stack)
 	*stack = head;
 	return (i);
 }
+
+void	check_to_pull(t_list **stack_a, t_list **stack_b)
+{
+	int		flag;
+	t_list	*head_a;
+
+	flag = 0;
+	head_a = *stack_a;
+	while (*stack_a)
+	{
+		if ((*stack_b)->rank < (*stack_a)->rank
+			&& (*stack_a)->prev->rank > (*stack_a)->rank)
+			break ;
+		else if ((*stack_b)->rank > (*stack_a)->prev->rank
+			&& (*stack_a)->rank < (*stack_a)->prev->rank)
+			break ;
+		else if ((*stack_a)->prev->rank < (*stack_b)->rank
+			&& (*stack_a)->rank > (*stack_b)->rank)
+			break ;
+		flag++;
+		*stack_a = (*stack_a)->next;
+		if (*stack_a == head_a)
+			break ;
+	}
+	*stack_a = head_a;
+	while (flag != 0)
+		flag = put_in_place(stack_a, 'a', flag);
+	return ;
+}
+
+void	check_to_push(t_list *stack_a, t_list **stack_b)
+{
+	int	flag;
+
+	flag = 1;
+	if (!*stack_b)
+		flag = 0;
+	else if ((*stack_b)->rank < (*stack_b)->next->rank)
+	{
+		swap(stack_b, 'b');
+		flag = 0;
+	}
+	if (!check_sorted(stack_b) != 0)
+	{
+		flag = count_moves(stack_a->rank, *stack_b);
+		while (flag != 0)
+			flag = put_in_place(stack_b, 'b', flag);
+	}
+	return ;
+}

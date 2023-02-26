@@ -27,9 +27,9 @@ void	swap(t_list	**stack, char letter)
 	temp->next = *stack;
 	*stack = temp;
 	if (letter == 'a')
-		printf("sa\n");
+		write(1, "sa\n", 3);
 	if (letter == 'b')
-		printf("sb\n");
+		write(1, "sb\n", 3);
 	return ;
 }
 
@@ -48,9 +48,9 @@ void	push(t_list **src, t_list **dest, char letter)
 	}
 	lstadd_front(dest, temp);
 	if (letter == 'a')
-		printf("pa\n");
+		write(1, "pa\n", 3);
 	if (letter == 'b')
-		printf("pb\n");
+		write(1, "pb\n", 3);
 	return ;
 }
 
@@ -58,9 +58,9 @@ void	rotate(t_list **stack, char letter)
 {
 	*stack = (*stack)->next;
 	if (letter == 'a')
-		printf("ra\n");
+		write(1, "ra\n", 3);
 	if (letter == 'b')
-		printf("rb\n");
+		write(1, "rb\n", 3);
 	return ;
 }
 
@@ -68,8 +68,8 @@ void	reverse_rotate(t_list **stack, char letter)
 {
 	*stack = (*stack)->prev;
 	if (letter == 'a')
-		printf("rra\n");
+		write(1, "rra\n", 4);
 	if (letter == 'b')
-		printf("rrb\n");
+		write(1, "rrb\n", 4);
 	return ;
 }

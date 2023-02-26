@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-void	check_stack(t_list **stack_a, t_list **stack_b);
 void	pivoting(t_list **stack_a, t_list **stack_b, int size);
 
 void	sort_three(t_list **stack)
@@ -40,9 +39,9 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	push(stack_a, stack_b, 'a');
 	while (check_sorted(stack_a) == 0)
 		sort_three(stack_a);
-	check_stack(stack_a, stack_b);
+	check_to_pull(stack_a, stack_b);
 	push(stack_b, stack_a, 'b');
-	check_stack(stack_a, stack_b);
+	check_to_pull(stack_a, stack_b);
 	push(stack_b, stack_a, 'b');
 	while (stack_a)
 	{
@@ -65,35 +64,6 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	check_stack(t_list **stack_a, t_list **stack_b)
-{
-	int		flag;
-	t_list	*head_a;
-
-	flag = 0;
-	head_a = *stack_a;
-	while (*stack_a)
-	{
-		if ((*stack_b)->rank < (*stack_a)->rank
-			&& (*stack_a)->prev->rank > (*stack_a)->rank)
-			break ;
-		else if ((*stack_b)->rank > (*stack_a)->prev->rank
-			&& (*stack_a)->rank < (*stack_a)->prev->rank)
-			break ;
-		else if ((*stack_a)->prev->rank < (*stack_b)->rank
-			&& (*stack_a)->rank > (*stack_b)->rank)
-			break ;
-		flag++;
-		*stack_a = (*stack_a)->next;
-		if (*stack_a == head_a)
-			break ;
-	}
-	*stack_a = head_a;
-	while (flag != 0)
-		flag = put_in_place(stack_a, flag);
-	return ;
-}
-
 void	pivoting(t_list **stack_a, t_list **stack_b, int size)
 {
 	int		round;
@@ -108,13 +78,19 @@ void	pivoting(t_list **stack_a, t_list **stack_b, int size)
 			if ((*stack_a)->rank <= ((size / PIVOT) * round))
 			{
 				push(stack_a, stack_b, 'a');
+				if (lstsize(*stack_b) > 1)
+					check_to_push(*stack_a, stack_b);
 				head = *stack_a;
 			}
+			else
+				*stack_a = (*stack_a)->next;
 			if ((*stack_a)->next == head)
 				break ;
-			*stack_a = (*stack_a)->next;
 		}
+		print_stack(stack_b, 'b');
 		round++;
 	}
+	print_stack(stack_a, 'a');
+	print_stack(stack_b, 'b');
 	return ;
 }

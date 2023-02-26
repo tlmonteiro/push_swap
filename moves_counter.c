@@ -12,22 +12,40 @@
 
 #include "push_swap.h"
 
-int	put_in_place(t_list **stack, int counter)
+int	put_in_place(t_list **stack, char letter, int counter)
 {
 	int	size;
 
 	size = lstsize(*stack);
 	if (counter > (size / 2))
 	{
-		reverse_rotate(stack, 'a');
+		reverse_rotate(stack, letter);
 		counter++;
 	}
 	else if (counter != 0)
 	{
-		rotate(stack, 'a');
+		rotate(stack, letter);
 		counter--;
 	}
 	if (counter >= size)
 		counter = 0;
+	return (counter);
+}
+
+int	count_moves(int rank, t_list *stack)
+{
+	int		counter;
+	t_list	*head;
+
+	counter = 0;
+	head = stack;
+	while (stack)
+	{
+		counter++;
+		if (stack->next == head || stack->rank < rank)
+			break ;
+		stack = stack->next;
+	}
+	stack = head;
 	return (counter);
 }
