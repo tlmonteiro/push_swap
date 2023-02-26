@@ -51,30 +51,18 @@ void	lstadd_front(t_list **stack, t_list *node)
 		(*stack)->prev = node;
 		return ;
 	}
-	node->next = (*stack)->next;
-	node->prev = *stack;
-	(*stack)->next->prev = node;
-	(*stack)->next = node;
+	node->next = *stack;
+	node->prev = (*stack)->prev;
+	(*stack)->prev->next = node;
+	(*stack)->prev = node;
 	*stack = node;
 	return ;
 }
 
 void	lstadd_back(t_list **stack, t_list *node)
 {
-	t_list	*head;
-
-	if (!*stack)
-	{
-		*stack = node;
-		(*stack)->next = node;
-		(*stack)->prev = node;
-		return ;
-	}
-	head = *stack;
-	if ((*stack)->prev != *stack)
-		*stack = (*stack)->prev;
 	lstadd_front(stack, node);
-	*stack = head;
+	*stack = (*stack)->next;
 	return ;
 }
 

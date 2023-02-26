@@ -14,9 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	int	range;
-
-	range = 21;
 	if (argc > 1)
 	{
 		if (argc > 2)
@@ -24,10 +21,7 @@ int	main(int argc, char **argv)
 			if (check_doubles(argv) == 0)
 				exit(0);
 		}
-		if (argc > 5)
-			range = 43;
-		printf("slice: %i\n", SLICE);
-		//push_swap(argv, argc);
+		push_swap(argv, argc);
 	}
 	return (0);
 }

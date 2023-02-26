@@ -12,30 +12,40 @@
 
 #include "push_swap.h"
 
+void	choose_sorting(int argc, t_list **stack_a, t_list **stack_b);
+
 void	push_swap(char **argv, int argc)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	int		flag;
 
 	stack_a = parse_arg(0, argv, argc);
 	stack_b = 0;
-	flag = check_sorted(&stack_a);
+	if (check_sorted(&stack_a) == 0)
+		choose_sorting(argc, &stack_a, &stack_b);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+	return ;
+}
+
+void	choose_sorting(int argc, t_list **stack_a, t_list **stack_b)
+{
+	int	flag;
+
+	flag = 0;
+	if (argc == 3 && flag == 0)
+		swap(stack_a, 'a');
 	if (argc == 4)
 	{
 		while (flag == 0)
 		{
-			sort_three(&stack_a);
-			flag = check_sorted(&stack_a);
+			sort_three(stack_a);
+			flag = check_sorted(stack_a);
 		}
 	}
-	if (stack_b != 0)
-		print_stack(&stack_b, 'b');
 	else if (argc == 6)
-	{
-		sort_five(&stack_a, &stack_b);
-	}
-	free_stack(&stack_a);
-	free_stack(&stack_b);
-	return ;
+		sort_five(stack_a, stack_b);
+
+	else if (argc > 100)
+		sort_hundreds(stack_a, stack_b);
 }

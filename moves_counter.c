@@ -12,14 +12,6 @@
 
 #include "push_swap.h"
 
-void	check_helper(t_list **stack, int flag)
-{
-	while (flag != 0)
-		flag = put_in_place(stack, flag);
-	*stack = (*stack)->prev;
-	return ;
-}
-
 int	put_in_place(t_list **stack, int counter)
 {
 	int	size;

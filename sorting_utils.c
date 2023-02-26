@@ -13,6 +13,7 @@
 #include "push_swap.h"
 
 void	check_stack(t_list **stack_a, t_list **stack_b);
+void	pivoting(t_list **stack_a, t_list **stack_b, int size);
 
 void	sort_three(t_list **stack)
 {
@@ -40,7 +41,9 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	while (check_sorted(stack_a) == 0)
 		sort_three(stack_a);
 	check_stack(stack_a, stack_b);
+	push(stack_b, stack_a, 'b');
 	check_stack(stack_a, stack_b);
+	push(stack_b, stack_a, 'b');
 	while (stack_a)
 	{
 		if ((*stack_a)->rank == 1)
@@ -53,11 +56,14 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-/* void	sort_hundreds(t_list **stack_a, t_list **stack_b)
+void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 {
-	print_stack(stack_a, 'a');
+	int	size;
+
+	size = lstsize(*stack_a);
+	pivoting(stack_a, stack_b, size);
 	return ;
-} */
+}
 
 void	check_stack(t_list **stack_a, t_list **stack_b)
 {
@@ -68,10 +74,11 @@ void	check_stack(t_list **stack_a, t_list **stack_b)
 	head_a = *stack_a;
 	while (*stack_a)
 	{
-		if ((*stack_b)->rank < head_a->rank)
+		if ((*stack_b)->rank < (*stack_a)->rank
+			&& (*stack_a)->prev->rank > (*stack_a)->rank)
 			break ;
-		else if ((*stack_b)->rank == (lstsize(*stack_a) + lstsize(*stack_b))
-			&& (*stack_a)->rank == 1)
+		else if ((*stack_b)->rank > (*stack_a)->prev->rank
+			&& (*stack_a)->rank < (*stack_a)->prev->rank)
 			break ;
 		else if ((*stack_a)->prev->rank < (*stack_b)->rank
 			&& (*stack_a)->rank > (*stack_b)->rank)
@@ -82,7 +89,32 @@ void	check_stack(t_list **stack_a, t_list **stack_b)
 			break ;
 	}
 	*stack_a = head_a;
-	check_helper(stack_a, flag);
-	push(stack_b, stack_a, 'b');
+	while (flag != 0)
+		flag = put_in_place(stack_a, flag);
+	return ;
+}
+
+void	pivoting(t_list **stack_a, t_list **stack_b, int size)
+{
+	int		round;
+	t_list	*head;
+
+	round = 1;
+	head = *stack_a;
+	while (round < PIVOT)
+	{
+		while (stack_a)
+		{
+			if ((*stack_a)->rank <= ((size / PIVOT) * round))
+			{
+				push(stack_a, stack_b, 'a');
+				head = *stack_a;
+			}
+			if ((*stack_a)->next == head)
+				break ;
+			*stack_a = (*stack_a)->next;
+		}
+		round++;
+	}
 	return ;
 }
