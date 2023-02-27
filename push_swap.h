@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 17:37:27 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:45:43 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int				lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
 void			check_to_pull(t_list **stack_a, t_list **stack_b);
-void			check_to_push(t_list *stack_a, t_list **stack_b);
-int				put_in_place(t_list **stack, char letter, int rank);
+void			check_to_push(t_list **stack_a, char letter, int pivot);
+int				put_in_place(t_list **stack, char letter, int counter);
 int				count_moves(int rank, t_list *stack);
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
@@ -58,7 +58,7 @@ void			reverse_rotate(t_list **stack, char letter);
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
-void			print_stack(t_list **stack_a, char letter);
+void			print_stack(t_list **stack, char letter);
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);

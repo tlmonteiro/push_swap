@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/22 13:27:04 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:38:10 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,28 @@ void	check_to_pull(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	check_to_push(t_list *stack_a, t_list **stack_b)
+void	check_to_push(t_list **stack, char letter, int pivot)
 {
-	int	flag;
+	int		min_moves;
+	int		node_moves;
+	t_list	*head;
 
-	flag = 1;
-	if (!*stack_b)
-		flag = 0;
-	else if ((*stack_b)->rank < (*stack_b)->next->rank)
+	min_moves = 500;
+	node_moves = 0;
+	head = *stack;
+	while (*stack)
 	{
-		swap(stack_b, 'b');
-		flag = 0;
+		if ((*stack)->rank <= pivot)
+		{
+			if (node_moves < min_moves)
+				min_moves = node_moves;
+		}	
+		node_moves++;
+		*stack = (*stack)->next;
+		if (*stack == head)
+			break ;
 	}
-	if (!check_sorted(stack_b) != 0)
-	{
-		flag = count_moves(stack_a->rank, *stack_b);
-		while (flag != 0)
-			flag = put_in_place(stack_b, 'b', flag);
-	}
+	while (min_moves != 0)
+		min_moves = put_in_place(stack, letter, min_moves);
 	return ;
 }

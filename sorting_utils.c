@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/22 17:37:16 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:46:06 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,11 @@ void	pivoting(t_list **stack_a, t_list **stack_b, int size)
 	head = *stack_a;
 	while (round < PIVOT)
 	{
-		while (stack_a)
-		{
-			if ((*stack_a)->rank <= ((size / PIVOT) * round))
-			{
-				push(stack_a, stack_b, 'a');
-				if (lstsize(*stack_b) > 1)
-					check_to_push(*stack_a, stack_b);
-				head = *stack_a;
-			}
-			else
-				*stack_a = (*stack_a)->next;
-			if ((*stack_a)->next == head)
-				break ;
-		}
-		print_stack(stack_b, 'b');
-		round++;
+		size = lstsize(*stack_a);
+		check_to_push(stack_a, 'a', (size / PIVOT) * round);
+		push(stack_a, stack_b, 'a');
+		break ;
 	}
-	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
 	return ;
 }

@@ -23,10 +23,7 @@ all: $(NAME)
 
 $(NAME):	$(OBJ)
 			$(CREATE) $(NAME) $(OBJ) $(LIB)
-
-#bonus:	$(NAME) $(OBJ_BONUS)
-#		$(CREATE) $(NAME) $(OBJ_BONUS)
-
+			$(CC) $(CFLAGS) main.c $(NAME) -o push_swap -fsanitize=address
 clean:
 		$(REMOVE) *.o
 
@@ -34,8 +31,5 @@ fclean:	clean
 		$(REMOVE) $(NAME)
 
 re:	clean all
-
-run: 
-		$(CC) $(CFLAGS) main.c $(NAME) -o push_swap -fsanitize=address
 
 .PHONY: all bonus clean fclean re
