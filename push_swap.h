@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 11:45:43 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:07:15 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
-# ifndef PIVOT
-#  define PIVOT 3
-# endif
 
 typedef struct s_list
 {
@@ -29,39 +26,57 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_seq
+{
+	int				size;
+	int				rank;
+}					t_seq;
+
+/* main */
 int				main(int argc, char **argv);
+/*parse_utils*/
 t_list			*parse_arg(t_list *stack, char **argv, int argc);
 void			initialize_stack(t_list **stack_a, int value);
 void			free_stack(t_list **stack);
 int				check_doubles(char **argv);
 int				check_input(char *nptr);
+/*lst_utils*/
 t_list			*lstnew(int value);
 t_list			*lstlast(t_list *stack);
 void			lstadd_front(t_list **stack, t_list *node);
 void			lstadd_back(t_list **stack, t_list *node);
 int				lstsize(t_list *stack);
+/*stack_utils*/
 void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
 void			check_to_pull(t_list **stack_a, t_list **stack_b);
-void			check_to_push(t_list **stack_a, char letter, int pivot);
+void			check_to_push(t_list **stack_a, t_list **stack_b, int rank);
+t_seq			sequence_finder(t_list *stack);
+/*sort_utils*/
 int				put_in_place(t_list **stack, char letter, int counter);
 int				count_moves(int rank, t_list *stack);
+/*ft_libft*/
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
 int				ft_atoi(const char *nptr);
+/*push_swap*/
 void			push_swap(char **argv, int argc);
 void			choose_sorting(int argc, t_list **stack_a, t_list **stack_b);
+/*ps_moves*/
 void			swap(t_list **stack, char letter);
 void			push(t_list **src, t_list **dest, char letter);
 void			rotate(t_list **stack, char letter);
 void			reverse_rotate(t_list **stack, char letter);
+/*ps_double_moves*/
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
+/*printf_utils*/
 void			print_stack(t_list **stack, char letter);
+/*sorting*/
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
-void			pivoting(t_list **stack_a, t_list **stack_b, int size);
+void			pivoting(t_list **stack_a, t_list **stack_b);
 
 #endif

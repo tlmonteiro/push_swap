@@ -6,13 +6,13 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/27 11:46:06 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:59:15 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pivoting(t_list **stack_a, t_list **stack_b, int size);
+void	pivoting(t_list **stack_a, t_list **stack_b);
 
 void	sort_three(t_list **stack)
 {
@@ -35,14 +35,14 @@ void	sort_three(t_list **stack)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	push(stack_a, stack_b, 'a');
-	push(stack_a, stack_b, 'a');
+	push(stack_a, stack_b, 'b');
+	push(stack_a, stack_b, 'b');
 	while (check_sorted(stack_a) == 0)
 		sort_three(stack_a);
 	check_to_pull(stack_a, stack_b);
-	push(stack_b, stack_a, 'b');
+	push(stack_b, stack_a, 'a');
 	check_to_pull(stack_a, stack_b);
-	push(stack_b, stack_a, 'b');
+	push(stack_b, stack_a, 'a');
 	while (stack_a)
 	{
 		if ((*stack_a)->rank == 1)
@@ -57,27 +57,45 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 
 void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 {
-	int	size;
-
-	size = lstsize(*stack_a);
-	pivoting(stack_a, stack_b, size);
+	pivoting(stack_a, stack_b);
 	return ;
 }
 
-void	pivoting(t_list **stack_a, t_list **stack_b, int size)
+void	pivoting(t_list **stack_a, t_list **stack_b)
 {
-	int		round;
-	t_list	*head;
+	t_seq	s_head;
+	int		size_a;
+	int		i;
 
-	round = 1;
-	head = *stack_a;
-	while (round < PIVOT)
+	s_head = sequence_finder(*stack_a);
+	while (*stack_a)
 	{
-		size = lstsize(*stack_a);
-		check_to_push(stack_a, 'a', (size / PIVOT) * round);
-		push(stack_a, stack_b, 'a');
-		break ;
+		if ((*stack_a)->rank != s_head.rank)
+			push(stack_a, stack_b, 'b');
+		if ((*stack_a)->rank == s_head.rank)
+			break ;
 	}
-	print_stack(stack_b, 'b');
+	size_a = lstsize(*stack_a);
+	i = size_a - s_head.size;
+	if (s_head.size <= (size_a / 2))
+	{
+		while (s_head.size-- > 0)
+			rotate(stack_a, 'a');
+	}
+	else
+	{
+		while (i--)
+		{
+			reverse_rotate(stack_a, 'a');
+			push(stack_a, stack_b, 'b');
+		}
+	}
+	while (*stack_a)
+	{
+		if ((*stack_a)->rank != s_head.rank)
+			push(stack_a, stack_b, 'b');
+		if ((*stack_a)->rank == s_head.rank)
+			break ;
+	}
 	return ;
 }

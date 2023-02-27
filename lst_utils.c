@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:28:46 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/22 15:18:09 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:23:00 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_list	*lstlast(t_list *stack)
 		return (0);
 	while (temp)
 	{
-		if (temp->next == stack)
-			break ;
 		temp = temp->next;
+		if (temp == stack)
+			break ;
 	}
 	return (temp);
 }
@@ -78,9 +78,9 @@ int	lstsize(t_list *stack)
 	while (temp)
 	{
 		i++;
-		if (temp->next == stack)
-			break ;
 		temp = temp->next;
+		if (temp == stack)
+			break ;
 	}
 	return (i);
 }

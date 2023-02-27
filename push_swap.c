@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/22 13:01:52 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:29:55 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	choose_sorting(int argc, t_list **stack_a, t_list **stack_b)
 	else if (argc == 6)
 		sort_five(stack_a, stack_b);
 
-	else if (argc > 100)
+	else if (argc > 6)
 		sort_hundreds(stack_a, stack_b);
 }

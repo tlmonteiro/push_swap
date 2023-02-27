@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/27 11:38:10 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:48:14 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,28 +92,57 @@ void	check_to_pull(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	check_to_push(t_list **stack, char letter, int pivot)
+void	check_to_push(t_list **stack_a, t_list **stack_b, int rank)
 {
-	int		min_moves;
-	int		node_moves;
 	t_list	*head;
 
-	min_moves = 500;
-	node_moves = 0;
-	head = *stack;
-	while (*stack)
+	head = *stack_a;
+	while (*stack_a)
 	{
-		if ((*stack)->rank <= pivot)
+		if ((*stack_a)->rank < rank)
 		{
-			if (node_moves < min_moves)
-				min_moves = node_moves;
-		}	
-		node_moves++;
-		*stack = (*stack)->next;
-		if (*stack == head)
+			push(stack_a, stack_b, 'b');
+			head = *stack_a;
+		}
+		else
+			rotate(stack_a, 'a');
+		if ((*stack_a)->next == head)
 			break ;
 	}
-	while (min_moves != 0)
-		min_moves = put_in_place(stack, letter, min_moves);
 	return ;
+}
+
+t_seq	sequence_finder(t_list *stack)
+{
+	t_seq	seq;
+	int		i;
+	int		temp;
+	t_list	*head;
+
+	i = 1;
+	head = stack->next;
+	seq.size = 1;
+	seq.rank = head->prev->value;
+	temp = stack->value;
+	while (head)
+	{
+		if (head->rank > head->prev->rank && head->next != stack)
+			i++;
+		else if (head->rank <= head->prev->rank || head->next == stack)
+		{
+			if (head->next == stack && head->rank > head->prev->rank)
+				i++;
+			if (i > seq.size)
+			{
+				seq.size = i;
+				seq.rank = temp;
+			}
+			i = 1;
+			temp = head->value;
+		}
+		head = head->next;
+		if (head == stack)
+			break ;
+	}
+	return (seq);
 }

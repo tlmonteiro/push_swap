@@ -2,14 +2,10 @@ NAME = push_swap.a
 
 LIB = push_swap.h
 
-C_SOURCES = parse_utils.c lst_utils.c ft_libft.c printf_utils.c ps_moves.c push_swap.c stack_utils.c sorting_utils.c \
-			moves_counter.c ps_double_moves.c
-
-#BONUS_SOURCES =
+C_SOURCES = ft_libft.c lst_utils.c parse_utils.c printf_utils.c ps_moves.c \
+			push_swap.c ps_double_moves.c stack_utils.c sort_utils.c sorting.c
 
 OBJ = $(C_SOURCES:.c=.o)
-
-#OBJ_BONUS = $(BONUS_SOURCES:.c=.o)
 
 CREATE = @ar -rcs
 
