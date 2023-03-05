@@ -66,7 +66,7 @@ int	check_min(t_list *stack_a, t_list *stack_b)
 	head_b = stack_b;
 	while (stack_b)
 	{
-		moves_b = count_moves(stack_b->rank, stack_b);
+		moves_b = count_moves(stack_b->rank, head_b);
 		if (moves_b < 0)
 			moves_b *= -1;
 		moves_a = check_to_push(stack_a, stack_b->rank);
