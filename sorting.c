@@ -57,7 +57,23 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 
 void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 {
+	//t_list	*head_b;
+	int		moves;
+
 	pivoting(stack_a, stack_b);
+	//head_b = *stack_b;
+	print_stack(stack_a, 'a');
+	print_stack(stack_b, 'b');
+	/* while (*stack_b)
+	{
+		moves = count_moves((*stack_b)->rank, head_b);
+		printf("node: %i\tmoves: %i\n", (*stack_b)->value, moves);
+		*stack_b = (*stack_b)->next;
+		if (*stack_b == head_b)
+			break ;
+	} */
+	moves = check_min(*stack_a, *stack_b);
+	printf("moves: %i\n", moves);
 	return ;
 }
 

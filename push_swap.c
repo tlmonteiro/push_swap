@@ -45,7 +45,6 @@ void	choose_sorting(int argc, t_list **stack_a, t_list **stack_b)
 	}
 	else if (argc == 6)
 		sort_five(stack_a, stack_b);
-
 	else if (argc > 6)
 		sort_hundreds(stack_a, stack_b);
 }

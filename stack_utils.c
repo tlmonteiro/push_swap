@@ -92,24 +92,35 @@ void	check_to_pull(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-void	check_to_push(t_list **stack_a, t_list **stack_b, int rank)
+int	check_to_push(t_list *stack_a, int rank)
 {
-	t_list	*head;
+	int		counter;
+	int		size;
+	t_list	*head_a;
 
-	head = *stack_a;
-	while (*stack_a)
+	counter = 0;
+	size = lstsize(stack_a);
+	head_a = stack_a;
+	while (stack_a)
 	{
-		if ((*stack_a)->rank < rank)
-		{
-			push(stack_a, stack_b, 'b');
-			head = *stack_a;
-		}
-		else
-			rotate(stack_a, 'a');
-		if ((*stack_a)->next == head)
+		if (rank < stack_a->rank
+			&& stack_a->prev->rank > stack_a->rank)
+			break ;
+		else if (rank > stack_a->prev->rank
+			&& stack_a->rank < stack_a->prev->rank)
+			break ;
+		else if (stack_a->prev->rank < rank
+			&& stack_a->rank > rank)
+			break ;
+		counter++;
+		stack_a = stack_a->next;
+		if (stack_a == head_a)
 			break ;
 	}
-	return ;
+	stack_a = head_a;
+	if (counter > (size / 2))
+		counter = (size - counter) * -1;
+	return (counter);
 }
 
 t_seq	sequence_finder(t_list *stack)
