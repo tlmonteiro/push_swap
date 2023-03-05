@@ -62,7 +62,7 @@ int	check_min(t_list *stack_a, t_list *stack_b)
 	int		moves_b;
 	t_list	*head_b;
 
-	new_min = 0;
+	new_min = 500;
 	head_b = stack_b;
 	while (stack_b)
 	{
@@ -75,7 +75,7 @@ int	check_min(t_list *stack_a, t_list *stack_b)
 		total = moves_a + moves_b;
 		printf("node_a: %i node_b: %i\tma: %i + mb: %i = total: %i\n",
 			stack_a->value, stack_b->value, moves_a, moves_b, total);
-		if (total <= new_min)
+		if (total < new_min)
 			new_min = total;
 		stack_b = stack_b->next;
 		if (stack_b == head_b)
