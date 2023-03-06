@@ -54,12 +54,10 @@ int	count_moves(int rank, t_list *stack)
 	return (counter);
 }
 
-int	check_min(t_list *stack_a, t_list *stack_b)
+int	check_min(t_list *stack_a, int moves_a, t_list *stack_b, int moves_b)
 {
 	int		total;
 	int		new_min;
-	int		moves_a;
-	int		moves_b;
 	t_list	*head_b;
 
 	new_min = 500;
@@ -67,9 +65,9 @@ int	check_min(t_list *stack_a, t_list *stack_b)
 	while (stack_b)
 	{
 		moves_b = count_moves(stack_b->rank, head_b);
+		moves_a = check_to_push(stack_a, stack_b->rank);
 		if (moves_b < 0)
 			moves_b *= -1;
-		moves_a = check_to_push(stack_a, stack_b->rank);
 		if (moves_a < 0)
 			moves_a *= -1;
 		total = moves_a + moves_b;

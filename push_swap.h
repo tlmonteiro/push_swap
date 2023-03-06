@@ -55,7 +55,8 @@ t_seq			sequence_finder(t_list *stack);
 /*sort_utils*/
 int				put_in_place(t_list **stack, char letter, int counter);
 int				count_moves(int rank, t_list *stack);
-int				check_min(t_list *stack_a, t_list *stack_b);
+int				check_min(t_list *stack_a, int moves_a, t_list *stack_b,
+					int moves_b);
 /*ft_libft*/
 int				ft_isdigit(int c);
 long long		ft_atoll(const char *nptr);
