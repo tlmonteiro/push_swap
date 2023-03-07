@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 22:37:16 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:56:05 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 			else
 				put_in_place(stack_b, 'b', moves.y);
 		}
-		print_stack(stack_a, 'a');
-		print_stack(stack_b, 'b');
 	}
 	arrange_stack(stack_a);
 	print_stack(stack_a, 'a');

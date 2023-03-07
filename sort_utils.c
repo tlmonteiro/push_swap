@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:01:04 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 22:28:05 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 23:26:54 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,30 @@ t_atb	check_min(t_list *stack_a, int moves_a, t_list *stack_b, int moves_b)
 		{
 			moves.x = moves_a;
 			moves.y = moves_b;
-			min_moves = store_total_moves(moves.x, moves.y);
+			min_moves = total;
 		}
 		head_b = head_b->next;
-		if (head_b == stack_b)
+		if (head_b == stack_b || min_moves == 0)
 			break ;
 	}
+	printf("moves A: %i\tmoves B: %i\ttotal: %i\n", moves_a, moves_b, min_moves);
 	return (moves);
 }
 
 int	store_total_moves(int moves_a, int moves_b)
 {
 	int	total;
+	int	signal;
 
+	signal = -1;
 	total = 0;
 	if (moves_a < 0 && moves_b < 0)
-		total = (moves_a * -1) + (moves_b * -1);
-	else if (moves_a < 0 && moves_b > 0)
-		total = (moves_a * -1) + moves_b;
-	else if (moves_a > 0 && moves_b < 0)
-		total = moves_a + (moves_b * -1);
+		total = (moves_a + moves_b) * signal;
+	else if (moves_a < 0 && moves_b >= 0)
+		total = ((moves_a * signal) + moves_b);
+	else if (moves_a >= 0 && moves_b < 0)
+		total = (moves_a + (moves_b * signal));
 	else
 		total = moves_a + moves_b;
-	printf("moves A: %i\tmoves B: %i\ttotal: %i\n", moves_a, moves_b, total);
 	return (total);
 }
