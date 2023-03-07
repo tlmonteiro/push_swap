@@ -14,8 +14,6 @@
 
 void	double_swap(t_list **stack_a, t_list **stack_b)
 {
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
 	swap(stack_a, 's');
 	swap(stack_b, 's');
 	write(1, "ss\n", 3);
@@ -25,8 +23,6 @@ void	double_swap(t_list **stack_a, t_list **stack_b)
 
 void	double_rotate(t_list **stack_a, t_list **stack_b)
 {
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
 	rotate(stack_a, 'r');
 	rotate(stack_b, 'r');
 	write(1, "rr\n", 3);
@@ -37,8 +33,6 @@ void	double_rotate(t_list **stack_a, t_list **stack_b)
 
 void	double_reverse_rotate(t_list **stack_a, t_list **stack_b)
 {
-	print_stack(stack_a, 'a');
-	print_stack(stack_b, 'b');
 	reverse_rotate(stack_a, 'r');
 	reverse_rotate(stack_b, 'r');
 	write(1, "rrr\n", 4);

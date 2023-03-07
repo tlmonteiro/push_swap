@@ -55,6 +55,7 @@ t_seq			sequence_finder(t_list *stack);
 /*sort_utils*/
 int				put_in_place(t_list **stack, char letter, int counter);
 int				count_moves(int rank, t_list *stack);
+int				store_total_moves(int moves_a, int moves_b, int total);
 int				check_min(t_list *stack_a, int moves_a, t_list *stack_b,
 					int moves_b);
 /*ft_libft*/
@@ -80,5 +81,7 @@ void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			pivoting(t_list **stack_a, t_list **stack_b);
+void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
+					int moves_b);
 
 #endif

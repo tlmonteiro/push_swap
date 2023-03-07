@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+int	store_total_moves(int moves_a, int moves_b, int total);
+
 int	put_in_place(t_list **stack, char letter, int counter)
 {
 	int	size;
@@ -56,28 +58,44 @@ int	count_moves(int rank, t_list *stack)
 
 int	check_min(t_list *stack_a, int moves_a, t_list *stack_b, int moves_b)
 {
+	int		min_moves;
 	int		total;
-	int		new_min;
+	int		min_a;
+	int		min_b;
 	t_list	*head_b;
 
-	new_min = 500;
+	min_moves = 500;
+	total = min_moves;
 	head_b = stack_b;
-	while (stack_b)
+	while (head_b)
 	{
-		moves_b = count_moves(stack_b->rank, head_b);
-		moves_a = check_to_push(stack_a, stack_b->rank);
-		if (moves_b < 0)
-			moves_b *= -1;
-		if (moves_a < 0)
-			moves_a *= -1;
-		total = moves_a + moves_b;
-		printf("node_a: %i node_b: %i\tma: %i + mb: %i = total: %i\n",
-			stack_a->value, stack_b->value, moves_a, moves_b, total);
-		if (total < new_min)
-			new_min = total;
-		stack_b = stack_b->next;
-		if (stack_b == head_b)
+		total = store_total_moves(check_to_push(stack_a, head_b->rank),
+				count_moves(head_b->rank, stack_b), total);
+		if (total < min_moves)
+		{
+			min_moves = total;
+			min_a = moves_a;
+			min_b = moves_b;
+		}
+		head_b = head_b->next;
+		if (head_b == stack_b)
 			break ;
 	}
-	return (new_min);
+	moves_a = min_a;
+	moves_b = min_b;
+	return (min_moves);
+}
+
+int	store_total_moves(int moves_a, int moves_b, int total)
+{
+	printf("moves A: %i\tmoves B: %i\n", moves_b, moves_a);
+	if (moves_a < 0 && moves_b < 0)
+		total = (moves_a * -1) + (moves_b * -1);
+	else if (moves_a < 0 && moves_b > 0)
+		total = (moves_a * -1) + moves_b;
+	else if (moves_a > 0 && moves_b < 0)
+		total = moves_a + (moves_b * -1);
+	else
+		total = moves_a + moves_b;
+	return (total);
 }

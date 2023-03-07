@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting_utils.c                                    :+:      :+:    :+:   */
+/*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/27 16:59:15 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 16:29:37 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
 	check_min(*stack_a, moves_a, *stack_b, moves_b);
-	printf("min found\n");
+	printf("moves A: %i\tmoves B: %i\n", moves_a, moves_b);
+	big_push(stack_a, stack_b, moves_a, moves_b);
 	return ;
 }
 
