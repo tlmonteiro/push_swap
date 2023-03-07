@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 16:29:37 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:37:16 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sort_three(t_list **stack)
 
 	first = (*stack)->rank;
 	mid = (*stack)->next->rank;
-	last = lstlast(*stack)->rank;
+	last = (*stack)->prev->rank;
 	if (first > mid && mid > last)
 		swap(stack, 'a');
 	else if (first > last && mid < last)
@@ -43,7 +43,7 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 	push(stack_b, stack_a, 'a');
 	check_to_pull(stack_a, stack_b);
 	push(stack_b, stack_a, 'a');
-	while (stack_a)
+	/* while (stack_a)
 	{
 		if ((*stack_a)->rank == 1)
 			break ;
@@ -51,45 +51,62 @@ void	sort_five(t_list **stack_a, t_list **stack_b)
 			reverse_rotate(stack_a, 'a');
 		else
 			rotate(stack_a, 'a');
-	}
+	} */
+	arrange_stack(stack_a);
 	return ;
 }
 
 void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 {
-	int	moves_a;
-	int	moves_b;
+	t_atb	moves;
 
-	moves_a = 0;
-	moves_b = 0;
+	moves.x = 0;
+	moves.y = 0;
 	pivoting(stack_a, stack_b);
+	while (*stack_b != 0)
+	{
+		moves = check_min(*stack_a, moves.x, *stack_b, moves.y);
+		if (moves.x * moves.y > 0)
+			push_same(stack_a, moves.x, stack_b, moves.y);
+		else if (moves.x * moves.y < 0)
+			push_opposites(stack_a, moves.x, stack_b, moves.y);
+		else
+		{
+			if (moves.x == 0 && moves.y == 0)
+				push(stack_b, stack_a, 'a');
+			else if (moves.x != 0)
+				put_in_place(stack_a, 'a', moves.x);
+			else
+				put_in_place(stack_b, 'b', moves.y);
+		}
+		print_stack(stack_a, 'a');
+		print_stack(stack_b, 'b');
+	}
+	arrange_stack(stack_a);
 	print_stack(stack_a, 'a');
 	print_stack(stack_b, 'b');
-	check_min(*stack_a, moves_a, *stack_b, moves_b);
-	printf("moves A: %i\tmoves B: %i\n", moves_a, moves_b);
-	big_push(stack_a, stack_b, moves_a, moves_b);
 	return ;
 }
 
 void	pivoting(t_list **stack_a, t_list **stack_b)
 {
-	t_seq	s_head;
+	t_atb	seq_head;
 	int		size_a;
 	int		i;
 
-	s_head = sequence_finder(*stack_a);
+	seq_head = sequence_finder(*stack_a);
 	while (*stack_a)
 	{
-		if ((*stack_a)->rank != s_head.rank)
+		if ((*stack_a)->rank != seq_head.y)
 			push(stack_a, stack_b, 'b');
-		if ((*stack_a)->rank == s_head.rank)
+		if ((*stack_a)->rank == seq_head.y)
 			break ;
 	}
 	size_a = lstsize(*stack_a);
-	i = size_a - s_head.size;
-	if (s_head.size <= (size_a / 2))
+	i = size_a - seq_head.x;
+	if (seq_head.x <= (size_a / 2))
 	{
-		while (s_head.size-- > 0)
+		while (seq_head.x-- > 0)
 			rotate(stack_a, 'a');
 	}
 	else
@@ -102,9 +119,9 @@ void	pivoting(t_list **stack_a, t_list **stack_b)
 	}
 	while (*stack_a)
 	{
-		if ((*stack_a)->rank != s_head.rank)
+		if ((*stack_a)->rank != seq_head.y)
 			push(stack_a, stack_b, 'b');
-		if ((*stack_a)->rank == s_head.rank)
+		if ((*stack_a)->rank == seq_head.y)
 			break ;
 	}
 	return ;

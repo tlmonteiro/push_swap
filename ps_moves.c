@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/17 10:28:21 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:46:50 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	swap(t_list	**stack, char letter)
 	t_list	*last;
 
 	temp = (*stack)->next;
-	last = lstlast(*stack);
+	last = (*stack)->prev;
 	temp->prev = last;
+	temp->next->prev = *stack;
 	last->next = temp;
-	(*stack)->next->next->prev = *stack;
 	(*stack)->prev = temp;
-	(*stack)->next = (*stack)->next->next;
+	(*stack)->next = temp->next;
 	temp->next = *stack;
 	*stack = temp;
 	if (letter == 'a')

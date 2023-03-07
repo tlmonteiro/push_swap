@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/02/27 16:48:14 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:00:29 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,17 +123,17 @@ int	check_to_push(t_list *stack_a, int rank)
 	return (counter);
 }
 
-t_seq	sequence_finder(t_list *stack)
+t_atb	sequence_finder(t_list *stack)
 {
-	t_seq	seq;
+	t_atb	seq;
 	int		i;
 	int		temp;
 	t_list	*head;
 
 	i = 1;
 	head = stack->next;
-	seq.size = 1;
-	seq.rank = head->prev->value;
+	seq.x = 1;
+	seq.y = head->prev->value;
 	temp = stack->value;
 	while (head)
 	{
@@ -143,10 +143,10 @@ t_seq	sequence_finder(t_list *stack)
 		{
 			if (head->next == stack && head->rank > head->prev->rank)
 				i++;
-			if (i > seq.size)
+			if (i > seq.x)
 			{
-				seq.size = i;
-				seq.rank = temp;
+				seq.x = i;
+				seq.y = temp;
 			}
 			i = 1;
 			temp = head->value;

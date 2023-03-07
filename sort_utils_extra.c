@@ -6,61 +6,56 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 16:29:36 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:09:14 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	big_push(t_list **stack_a, t_list **stack_b, int moves_a, int moves_b)
+#include "push_swap.h"
+
+void	push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b)
 {
-	if (moves_a && moves_b < 0)
+	if (mv_a <= 0)
 	{
-		if (moves_a <= moves_b)
-		{
-			while (moves_b++)
-			{
-				double_reverse_rotate(stack_a, stack_b);
-				moves_a++;
-			}
-			while (moves_a != 0)
-				reverse_rotate(stack_a, 'a');
-		}
-	}
-	else if (moves_a && moves_b > 0)
-	{
-		if (moves_a <= moves_b)
-		{
-			while (moves_a--)
-			{
-				double_rotate(stack_a, stack_b);
-				moves_b--;
-			}
-			while (moves_b-- != 0)
-				rotate(stack_b, 'b');
-		}
+		while (mv_a++ != 0 && mv_b++ != 0)
+			double_reverse_rotate(stk_a, stk_b);
+		while (mv_a++ != 0)
+			reverse_rotate(stk_a, 'a');
+		while (mv_b++ != 0)
+			reverse_rotate(stk_b, 'b');
 	}
 	else
 	{
-		if (moves_a < 0)
-		{
-			while (moves_a++)
-				reverse_rotate(stack_a, 'a');
-		}
-		else 
-		{
-			while (moves_a--)
-				rotate(stack_a, 'a');
-		}
-		if (moves_b < 0)
-		{
-			while (moves_b++)
-				reverse_rotate(stack_b, 'b');
-		}
-		else 
-		{
-			while (moves_b--)
-				rotate(stack_b, 'b');
-		}
+		while (mv_a-- != 0 && mv_b-- != 0)
+			double_rotate(stk_a, stk_b);
+		while (mv_a-- != 0)
+			rotate(stk_a, 'a');
+		while (mv_b-- != 0)
+			rotate(stk_b, 'b');
 	}
+	return ;
 }
 
-void    push_opposite()
+void	push_opposites(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b)
+{
+	if (mv_a < 0)
+	{
+		while (mv_a++ != 0)
+			reverse_rotate(stk_a, 'a');
+	}
+	else if (mv_a > 0)
+	{
+		while (mv_a-- != 0)
+			rotate(stk_a, 'a');
+	}
+	if (mv_b < 0)
+	{
+		while (mv_b++ != 0)
+			reverse_rotate(stk_b, 'b');
+	}
+	else if (mv_b > 0)
+	{
+		while (mv_b-- != 0)
+			rotate(stk_b, 'b');
+	}
+	return ;
+}

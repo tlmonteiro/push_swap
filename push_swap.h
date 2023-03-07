@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/27 17:07:15 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 22:28:55 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct s_seq
+typedef struct s_atb
 {
-	int				size;
-	int				rank;
-}					t_seq;
+	int				x;
+	int				y;
+}					t_atb;
 
 /* main */
 int				main(int argc, char **argv);
@@ -51,12 +51,13 @@ void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
 void			check_to_pull(t_list **stack_a, t_list **stack_b);
 int				check_to_push(t_list *stack_a, int rank);
-t_seq			sequence_finder(t_list *stack);
+t_atb			sequence_finder(t_list *stack);
 /*sort_utils*/
 int				put_in_place(t_list **stack, char letter, int counter);
+void			arrange_stack(t_list **stack);
 int				count_moves(int rank, t_list *stack);
-int				store_total_moves(int moves_a, int moves_b, int total);
-int				check_min(t_list *stack_a, int moves_a, t_list *stack_b,
+int				store_total_moves(int moves_a, int moves_b);
+t_atb			check_min(t_list *stack_a, int moves_a, t_list *stack_b,
 					int moves_b);
 /*ft_libft*/
 int				ft_isdigit(int c);
@@ -83,5 +84,9 @@ void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			pivoting(t_list **stack_a, t_list **stack_b);
 void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
+/*sort_utils_extra*/
+void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
+void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
+					int mv_b);
 
 #endif
