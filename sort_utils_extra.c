@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/08 16:27:25 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:04:10 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a, int size)
 {
 	if ((*stk_a)->rank < (size - 2))
 	{
+		ready_to_pull(stk_a, stk_b);
 		push(stk_a, stk_b, 'b');
 		hd_a = *stk_a;
 	}

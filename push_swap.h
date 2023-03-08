@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/08 16:30:46 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:05:20 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int				lstsize(t_list *stack);
 void			get_rank(t_list *stack);
 int				check_sorted(t_list **stack);
 void			check_to_pull(t_list **stack_a, t_list **stack_b);
-int				check_to_push(t_list *stack_a, int rank);
-t_atb			sequence_finder(t_list *stack);
+int				check_to_push(t_list *stack_a, int rank, int size);
+t_atb			sequence_finder(t_list *stack, int i);
 /*sort_utils*/
 int				put_in_place(t_list **stack, char letter, int counter);
 void			arrange_stack(t_list **stack);
@@ -70,6 +70,7 @@ int				ft_atoi(const char *nptr);
 void			push_swap(char **argv, int argc);
 void			choose_sorting(int argc, t_list **stack_a, t_list **stack_b);
 void			pivoting(t_list **stack_a, t_list **stack_b);
+t_atb			update_seq(t_atb seq, int i, int value);
 /*ps_moves*/
 void			swap(t_list **stack, char letter);
 void			push(t_list **src, t_list **dest, char letter);
@@ -97,5 +98,8 @@ int				pivot_without_seq(t_list **stack_a, t_list **stk_b,
 void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
 void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);
+/* optmizing */
+int				check_rev_sort(t_list **stack_b);
+void			ready_to_pull(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:01:04 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/08 15:20:42 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:58:24 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_atb	check_min(t_list *stack_a, int moves_a, t_list *stack_b, int moves_b)
 	head_b = stack_b;
 	while (head_b)
 	{
-		moves_a = check_to_push(stack_a, head_b->rank);
+		moves_a = check_to_push(stack_a, head_b->rank, lstsize(stack_a));
 		moves_b = count_moves(head_b->rank, stack_b);
 		total = store_total_moves(moves_a, moves_b);
 		if (min_moves > total)

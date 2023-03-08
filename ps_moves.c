@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/08 16:08:45 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:02:50 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	push_many(t_list **stack_a, t_list **stack_b, t_atb seq)
 {
 	while (*stack_a)
 	{
+		ready_to_pull(stack_a, stack_b);
 		if ((*stack_a)->value != seq.y)
 			push(stack_a, stack_b, 'b');
 		if ((*stack_a)->value == seq.y)

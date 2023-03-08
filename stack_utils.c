@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 12:43:12 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 22:00:29 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:24:41 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,12 @@ void	check_to_pull(t_list **stack_a, t_list **stack_b)
 	return ;
 }
 
-int	check_to_push(t_list *stack_a, int rank)
+int	check_to_push(t_list *stack_a, int rank, int size)
 {
 	int		counter;
-	int		size;
 	t_list	*head_a;
 
 	counter = 0;
-	size = lstsize(stack_a);
 	head_a = stack_a;
 	while (stack_a)
 	{
@@ -123,14 +121,12 @@ int	check_to_push(t_list *stack_a, int rank)
 	return (counter);
 }
 
-t_atb	sequence_finder(t_list *stack)
+t_atb	sequence_finder(t_list *stack, int i)
 {
 	t_atb	seq;
-	int		i;
 	int		temp;
 	t_list	*head;
 
-	i = 1;
 	head = stack->next;
 	seq.x = 1;
 	seq.y = head->prev->value;
@@ -143,11 +139,7 @@ t_atb	sequence_finder(t_list *stack)
 		{
 			if (head->next == stack && head->rank > head->prev->rank)
 				i++;
-			if (i > seq.x)
-			{
-				seq.x = i;
-				seq.y = temp;
-			}
+			seq = update_seq(seq, i, temp);
 			i = 1;
 			temp = head->value;
 		}
