@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/07 22:28:55 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:45:56 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
+# ifndef PIVOT
+#  define PIVOT 3
+# endif
 
 typedef struct s_list
 {

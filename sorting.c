@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 22:56:05 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:41:36 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,38 +89,80 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 void	pivoting(t_list **stack_a, t_list **stack_b)
 {
 	t_atb	seq_head;
+	t_list	*head_a;
 	int		size_a;
 	int		i;
+	int		round;
 
+	head_a = *stack_a;
 	seq_head = sequence_finder(*stack_a);
-	while (*stack_a)
+	if (seq_head.x > 3)
 	{
-		if ((*stack_a)->rank != seq_head.y)
-			push(stack_a, stack_b, 'b');
-		if ((*stack_a)->rank == seq_head.y)
-			break ;
-	}
-	size_a = lstsize(*stack_a);
-	i = size_a - seq_head.x;
-	if (seq_head.x <= (size_a / 2))
-	{
-		while (seq_head.x-- > 0)
-			rotate(stack_a, 'a');
+		while (*stack_a)
+		{
+			if ((*stack_a)->value != seq_head.y)
+				push(stack_a, stack_b, 'b');
+			if ((*stack_a)->value == seq_head.y)
+				break ;
+		}
+		size_a = lstsize(*stack_a);
+		i = size_a - seq_head.x;
+		if (seq_head.x <= (size_a / 2))
+		{
+			while (seq_head.x-- > 0)
+				rotate(stack_a, 'a');
+		}
+		else
+		{
+			while (i--)
+			{
+				reverse_rotate(stack_a, 'a');
+				push(stack_a, stack_b, 'b');
+			}
+		}
+		while (*stack_a)
+		{
+			if ((*stack_a)->value != seq_head.y)
+				push(stack_a, stack_b, 'b');
+			if ((*stack_a)->value == seq_head.y)
+				break ;
+		}
 	}
 	else
 	{
-		while (i--)
+		round = 1;
+		size_a = lstsize(*stack_a);
+		while (round <= PIVOT)
 		{
-			reverse_rotate(stack_a, 'a');
-			push(stack_a, stack_b, 'b');
+			while (*stack_a)
+			{
+				while ((*stack_a)->rank <= (size_a / PIVOT) * round)
+				{
+					if ((*stack_a)->rank < (size_a - 2))
+					{
+						push(stack_a, stack_b, 'b');
+						head_a = *stack_a;
+					}
+					else
+						rotate(stack_a, 'a');
+				}
+				while ((*stack_a)->rank > (size_a / PIVOT) * round)
+				{
+					rotate(stack_a, 'a');
+					if ((*stack_a) == head_a)
+						break ;
+				}
+				if (*stack_a == head_a || lstsize(*stack_a) == 3)
+					break ;
+			}
+			round++;
+			if (lstsize(*stack_a) == 3)
+				break ;
 		}
-	}
-	while (*stack_a)
-	{
-		if ((*stack_a)->rank != seq_head.y)
-			push(stack_a, stack_b, 'b');
-		if ((*stack_a)->rank == seq_head.y)
-			break ;
+		while (check_sorted(stack_a) == 0)
+			sort_three(stack_a);
+		print_stack(stack_a, 'a');
+		print_stack(stack_b, 'b');
 	}
 	return ;
 }
