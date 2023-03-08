@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/08 10:45:56 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:30:46 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ int				ft_atoi(const char *nptr);
 /*push_swap*/
 void			push_swap(char **argv, int argc);
 void			choose_sorting(int argc, t_list **stack_a, t_list **stack_b);
+void			pivoting(t_list **stack_a, t_list **stack_b);
 /*ps_moves*/
 void			swap(t_list **stack, char letter);
 void			push(t_list **src, t_list **dest, char letter);
 void			rotate(t_list **stack, char letter);
 void			reverse_rotate(t_list **stack, char letter);
+void			push_many(t_list **stack_a, t_list **stack_b, t_atb seq);
 /*ps_double_moves*/
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
@@ -84,10 +86,14 @@ void			print_stack(t_list **stack, char letter);
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
-void			pivoting(t_list **stack_a, t_list **stack_b);
 void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
 /*sort_utils_extra*/
+void			push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a,
+					int size);
+void			pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b);
+int				pivot_without_seq(t_list **stack_a, t_list **stk_b,
+					t_list *head_a, int i);
 void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
 void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);

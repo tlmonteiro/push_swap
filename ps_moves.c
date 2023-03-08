@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 22:46:50 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:08:45 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,17 @@ void	reverse_rotate(t_list **stack, char letter)
 		write(1, "rra\n", 4);
 	if (letter == 'b')
 		write(1, "rrb\n", 4);
+	return ;
+}
+
+void	push_many(t_list **stack_a, t_list **stack_b, t_atb seq)
+{
+	while (*stack_a)
+	{
+		if ((*stack_a)->value != seq.y)
+			push(stack_a, stack_b, 'b');
+		if ((*stack_a)->value == seq.y)
+			break ;
+	}
 	return ;
 }

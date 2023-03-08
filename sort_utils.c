@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 11:01:04 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/07 23:26:54 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:20:42 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_atb	check_min(t_list *stack_a, int moves_a, t_list *stack_b, int moves_b)
 		if (head_b == stack_b || min_moves == 0)
 			break ;
 	}
-	printf("moves A: %i\tmoves B: %i\ttotal: %i\n", moves_a, moves_b, min_moves);
 	return (moves);
 }
 
