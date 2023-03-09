@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/09 13:40:18 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:44:45 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
 /*sort_utils_extra*/
-void			push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a,
-					int size);
+void			push_and_update(t_list **stk_a, t_list **stk_b, int size);
 void			pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b);
-int				pivot_without_seq(t_list **stack_a, t_list **stk_b, int i);
+int				pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a,
+					int i);
 void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
 void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);

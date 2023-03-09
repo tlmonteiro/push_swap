@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:07:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/09 13:38:42 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:45:55 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	pivoting(t_list **stack_a, t_list **stack_b)
 {
 	t_atb	seq_head;
 	int		round;
+	int		size_a;
 
 	round = 1;
 	seq_head = sequence_finder(*stack_a, 1);
@@ -64,9 +65,10 @@ void	pivoting(t_list **stack_a, t_list **stack_b)
 	}
 	else
 	{
+		size_a = lstsize(*stack_a);
 		while (round <= PIVOT)
 		{
-			round = pivot_without_seq(stack_a, stack_b, round);
+			round = pivot_without_seq(stack_a, stack_b, size_a, round);
 			if (lstsize(*stack_a) == 3)
 				break ;
 		}
