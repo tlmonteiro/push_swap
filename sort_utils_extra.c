@@ -6,13 +6,14 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/08 18:04:10 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:02:16 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a, int size);
+void	push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a,
+			int size);
 
 void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b)
 {
@@ -36,19 +37,24 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int	pivot_without_seq(t_list **stack_a, t_list **stk_b, t_list *head_a, int i)
+int	pivot_without_seq(t_list **stack_a, t_list **stk_b, int i)
 {
-	int	size_a;
+	int		size_a;
+	t_list	*head_a;
 
 	size_a = lstsize(*stack_a);
+	head_a = *stack_a;
 	while (*stack_a)
 	{
 		while ((*stack_a)->rank <= (size_a / PIVOT) * i)
 			push_and_update(stack_a, stk_b, head_a, size_a);
 		while ((*stack_a)->rank > (size_a / PIVOT) * i)
 		{
+			head_a = *stack_a;
 			rotate(stack_a, 'a');
-			if ((*stack_a) == head_a)
+			print_stack(stack_a, 'a');
+			print_stack(stk_b, 'b');
+			if (*stack_a == head_a)
 				break ;
 		}
 		if (*stack_a == head_a || lstsize(*stack_a) == 3)
@@ -62,12 +68,10 @@ void	push_and_update(t_list **stk_a, t_list **stk_b, t_list *hd_a, int size)
 {
 	if ((*stk_a)->rank < (size - 2))
 	{
-		ready_to_pull(stk_a, stk_b);
 		push(stk_a, stk_b, 'b');
-		hd_a = *stk_a;
+		if (lstsize(*stk_b) < 1)
+			hd_a = *stk_a;
 	}
-	else
-		rotate(stk_a, 'a');
 	return ;
 }
 
