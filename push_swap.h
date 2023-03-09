@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/09 16:44:45 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:56:32 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
 void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);
 /* optmizing */
+int				ready_to_push(t_list *stack_a, int size, int i);
 
 #endif

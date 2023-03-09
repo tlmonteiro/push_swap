@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/09 17:27:49 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:20:53 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ int	pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a, int i)
 		head_a = *stack_a;
 		while ((*stack_a)->rank > (size_a / PIVOT) * i)
 		{
-			rotate(stack_a, 'a');
+			if (ready_to_push(*stack_a, size_a, i) == 0)
+				break ;
+			else if (ready_to_push(*stack_a, size_a, i) < 0)
+				reverse_rotate(stack_a, 'a');
+			else
+				rotate(stack_a, 'a');
 			if (*stack_a == head_a)
 				break ;
 		}
