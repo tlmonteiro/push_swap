@@ -2,7 +2,7 @@ NAME = push_swap.a
 
 LIB = push_swap.h
 
-C_SOURCES = ft_libft.c lst_utils.c parse_utils.c optmizing.c printf_utils.c ps_moves.c \
+C_SOURCES = ft_libft.c lst_utils.c optmizing.c parse_utils.c printf_utils.c ps_moves.c \
 			push_swap.c ps_double_moves.c stack_utils.c sort_utils.c sorting.c sort_utils_extra.c
 
 OBJ = $(C_SOURCES:.c=.o)

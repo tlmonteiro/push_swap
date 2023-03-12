@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/09 19:56:32 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:45:35 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 # include <string.h>
 # ifndef PIVOT
-#  define PIVOT 3
+#  define PIVOT 4
 # endif
 
 typedef struct s_list
@@ -76,7 +76,7 @@ void			swap(t_list **stack, char letter);
 void			push(t_list **src, t_list **dest, char letter);
 void			rotate(t_list **stack, char letter);
 void			reverse_rotate(t_list **stack, char letter);
-void			push_many(t_list **stack_a, t_list **stack_b, t_atb seq);
+void			push_many(t_list **stack_a, t_list **stack_b, int size_a);
 /*ps_double_moves*/
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
@@ -91,13 +91,15 @@ void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
 /*sort_utils_extra*/
 void			push_and_update(t_list **stk_a, t_list **stk_b, int size);
-void			pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b);
+void			pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
+					int size_a);
 int				pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a,
 					int i);
 void			push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b);
 void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);
 /* optmizing */
-int				ready_to_push(t_list *stack_a, int size, int i);
+int				check_next(t_list *stack_a, t_atb seq, int round, int size_a);
+void			check_skip_sequence(t_list **node, t_atb seq);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/09 13:05:03 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:55:52 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,32 @@ void	reverse_rotate(t_list **stack, char letter)
 	return ;
 }
 
-void	push_many(t_list **stack_a, t_list **stack_b, t_atb seq)
+void	push_many(t_list **stack_a, t_list **stack_b, int size_a)
 {
-	while (*stack_a)
+	int		round;
+	t_atb	seq;
+	int		i;
+
+	seq = sequence_finder(*stack_a, 1);
+	round = check_next(*stack_a, seq, 1, size_a);
+	while (round <= PIVOT && lstsize(*stack_a) > seq.x)
 	{
-		if ((*stack_a)->value != seq.y)
-			push(stack_a, stack_b, 'b');
+		i = lstsize(*stack_a) - seq.x;
+		while (i--)
+		{
+			if ((*stack_a)->value != seq.y)
+			{
+				if ((*stack_a)->rank <= (size_a * round) / PIVOT)
+					push(stack_a, stack_b, 'b');
+				else
+					rotate(stack_a, 'a');
+			}
+			if ((*stack_a)->value == seq.y)
+				break ;
+		}
+		round = check_next(*stack_a, seq, 1, size_a);
 		if ((*stack_a)->value == seq.y)
-			break ;
+			pivot_with_seq(seq, stack_a, stack_b, size_a);
 	}
 	return ;
 }

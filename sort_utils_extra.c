@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/09 20:20:53 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:32:14 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,32 @@
 
 void	push_and_update(t_list **stk_a, t_list **stk_b, int size);
 
-void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b)
+void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
+				int size_a)
 {
 	int	i;
-	int	size_a;
+	int	round;
+	int	new_size;
 
-	size_a = lstsize(*stack_a);
-	i = size_a - seq.x;
-	if (seq.x <= (size_a / 2))
+	new_size = lstsize(*stack_a);
+	if (seq.x <= (new_size / 2))
 	{
 		while (seq.x-- > 0)
 			rotate(stack_a, 'a');
 	}
 	else
 	{
-		while (i--)
+		round = check_next(*stack_a, seq, 1, size_a);
+		while (lstsize(*stack_a) > seq.x)
 		{
-			reverse_rotate(stack_a, 'a');
-			push(stack_a, stack_b, 'b');
+			i = new_size - seq.x;
+			while (i--)
+			{
+				reverse_rotate(stack_a, 'a');
+				if ((*stack_a)->rank <= (size_a * round) / PIVOT)
+					push(stack_a, stack_b, 'b');
+			}
+			round = check_next(*stack_a, seq, 1, size_a);
 		}
 	}
 }
@@ -43,17 +51,13 @@ int	pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a, int i)
 	head_a = *stack_a;
 	while (*stack_a)
 	{
-		while ((*stack_a)->rank <= (size_a / PIVOT) * i)
+		while ((*stack_a)->rank <= (size_a * i) / PIVOT
+			&& lstsize(*stack_a) > 3)
 			push_and_update(stack_a, stk_b, size_a);
 		head_a = *stack_a;
-		while ((*stack_a)->rank > (size_a / PIVOT) * i)
+		while ((*stack_a)->rank > (size_a * i) / PIVOT)
 		{
-			if (ready_to_push(*stack_a, size_a, i) == 0)
-				break ;
-			else if (ready_to_push(*stack_a, size_a, i) < 0)
-				reverse_rotate(stack_a, 'a');
-			else
-				rotate(stack_a, 'a');
+			rotate(stack_a, 'a');
 			if (*stack_a == head_a)
 				break ;
 		}
