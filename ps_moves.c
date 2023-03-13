@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/12 18:55:52 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:45:45 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,7 @@ void	push_many(t_list **stack_a, t_list **stack_b, int size_a)
 				break ;
 		}
 		round = check_next(*stack_a, seq, 1, size_a);
-		if ((*stack_a)->value == seq.y)
-			pivot_with_seq(seq, stack_a, stack_b, size_a);
+		sequence_leap(seq, stack_a, stack_b, size_a);
 	}
 	return ;
 }

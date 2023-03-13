@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/12 19:45:35 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:32:43 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <limits.h>
 # include <string.h>
 # ifndef PIVOT
-#  define PIVOT 4
+#  define PIVOT 3
 # endif
 
 typedef struct s_list
@@ -90,7 +90,8 @@ void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
 /*sort_utils_extra*/
-void			push_and_update(t_list **stk_a, t_list **stk_b, int size);
+int				push_and_update(t_list **stk_a, t_list **stk_b, int size,
+					int counter);
 void			pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 					int size_a);
 int				pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a,
@@ -100,6 +101,10 @@ void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);
 /* optmizing */
 int				check_next(t_list *stack_a, t_atb seq, int round, int size_a);
+int				update_counter(t_list *temp, t_list *next, int i);
+void			update_next(t_list **node, t_atb seq);
 void			check_skip_sequence(t_list **node, t_atb seq);
+void			sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b,
+					int size_a);
 
 #endif

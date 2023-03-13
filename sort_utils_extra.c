@@ -6,13 +6,13 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/12 19:32:14 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/12 22:53:36 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_and_update(t_list **stk_a, t_list **stk_b, int size);
+int	push_and_update(t_list **stk_a, t_list **stk_b, int size, int counter);
 
 void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 				int size_a)
@@ -32,10 +32,12 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 		round = check_next(*stack_a, seq, 1, size_a);
 		while (lstsize(*stack_a) > seq.x)
 		{
-			i = new_size - seq.x;
+			i = lstsize(*stack_a) - seq.x;
 			while (i--)
 			{
-				reverse_rotate(stack_a, 'a');
+				if ((*stack_a)->rank > (size_a * round) / PIVOT
+					|| (*stack_a)->value == seq.y)
+					reverse_rotate(stack_a, 'a');
 				if ((*stack_a)->rank <= (size_a * round) / PIVOT)
 					push(stack_a, stack_b, 'b');
 			}
@@ -47,15 +49,16 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 int	pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a, int i)
 {
 	t_list	*head_a;
+	int		counter;
 
+	counter = ((size_a * i) / PIVOT) - ((size_a * (i - 1)) / PIVOT);
 	head_a = *stack_a;
-	while (*stack_a)
+	while (counter > 0)
 	{
-		while ((*stack_a)->rank <= (size_a * i) / PIVOT
-			&& lstsize(*stack_a) > 3)
-			push_and_update(stack_a, stk_b, size_a);
+		while ((*stack_a)->rank <= (size_a * i) / PIVOT && counter > 0)
+			counter = push_and_update(stack_a, stk_b, size_a, counter);
 		head_a = *stack_a;
-		while ((*stack_a)->rank > (size_a * i) / PIVOT)
+		while ((*stack_a)->rank > (size_a * i) / PIVOT && counter > 0)
 		{
 			rotate(stack_a, 'a');
 			if (*stack_a == head_a)
@@ -68,13 +71,14 @@ int	pivot_without_seq(t_list **stack_a, t_list **stk_b, int size_a, int i)
 	return (i);
 }
 
-void	push_and_update(t_list **stk_a, t_list **stk_b, int size)
+int	push_and_update(t_list **stk_a, t_list **stk_b, int size, int counter)
 {
 	if ((*stk_a)->rank < (size - 2))
 		push(stk_a, stk_b, 'b');
 	else
 		rotate(stk_a, 'a');
-	return ;
+	counter--;
+	return (counter);
 }
 
 void	push_same(t_list **stk_a, int mv_a, t_list **stk_b, int mv_b)
