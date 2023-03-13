@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/13 16:42:11 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:30:42 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 			i = lstsize(*stack_a) - seq.x;
 			while (i--)
 			{
+				if (lstsize(*stack_a) == seq.x + 1 && (*stack_a)->next->value == seq.y)
+					push(stack_a, stack_b, 'b');
 				if ((*stack_a)->rank == tail)
 					break ;
-				if ((*stack_a)->rank >= (size_a * round) / PIVOT
+				if ((*stack_a)->rank > (size_a * round) / PIVOT
 					|| (*stack_a)->value == seq.y)
 					reverse_rotate(stack_a, 'a');
 				if ((*stack_a)->rank <= (size_a * round) / PIVOT)
 					push(stack_a, stack_b, 'b');
 			}
 			round = check_next(*stack_a, seq, 1, size_a);
+			if ((*stack_a)->next->rank == tail || (*stack_a)->rank == tail || (*stack_a)->prev->rank == tail)
+				break ;
 		}
 	}
 }
