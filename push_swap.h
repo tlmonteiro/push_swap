@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/13 00:32:43 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 09:46:03 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 /* optmizing */
 int				check_next(t_list *stack_a, t_atb seq, int round, int size_a);
 int				update_counter(t_list *temp, t_list *next, int i);
-void			update_next(t_list **node, t_atb seq);
+int				update_next(t_list *temp, t_list **next, t_atb seq, int i);
 void			check_skip_sequence(t_list **node, t_atb seq);
 void			sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b,
 					int size_a);
