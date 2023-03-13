@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/13 11:16:25 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:42:11 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 	int	i;
 	int	round;
 	int	new_size;
+	int	tail;
 
 	new_size = lstsize(*stack_a);
+	tail = get_tail(*stack_a, seq);
 	if (seq.x <= (new_size / 2))
 	{
 		while (seq.x-- > 0)
@@ -35,9 +37,9 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 			i = lstsize(*stack_a) - seq.x;
 			while (i--)
 			{
-				if ((*stack_a)->rank > (size_a * round) / PIVOT && (*stack_a)->next->value != seq.y && (*stack_a)->value != seq.y)
-					rotate(stack_a, 'a');
-				else if ((*stack_a)->rank > (size_a * round) / PIVOT
+				if ((*stack_a)->rank == tail)
+					break ;
+				if ((*stack_a)->rank >= (size_a * round) / PIVOT
 					|| (*stack_a)->value == seq.y)
 					reverse_rotate(stack_a, 'a');
 				if ((*stack_a)->rank <= (size_a * round) / PIVOT)

@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/09 17:03:33 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:12:09 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,27 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 	}
 	arrange_stack(stack_a);
 	return ;
+}
+
+int	get_tail(t_list *stack_a, t_atb seq)
+{
+	int	rank;
+	int	s_size;
+
+	rank = 0;
+	s_size = seq.x;
+	while (stack_a)
+	{
+		if (stack_a->value == seq.y)
+		{
+			while (s_size--)
+			{
+				rank = stack_a->rank;
+				stack_a = stack_a->next;
+			}
+		}
+		if (s_size <= 0)
+			break ;
+	}
+	return (rank);
 }

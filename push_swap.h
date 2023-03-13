@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/13 09:46:03 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:24:35 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
 void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
 					int moves_b);
+int				get_tail(t_list *stack_a, t_atb seq);
 /*sort_utils_extra*/
 int				push_and_update(t_list **stk_a, t_list **stk_b, int size,
 					int counter);
