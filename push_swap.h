@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/13 16:24:35 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:17:02 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,12 @@ void			push_many(t_list **stack_a, t_list **stack_b, int size_a);
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
-/*printf_utils*/
-void			print_stack(t_list **stack, char letter);
 /*sorting*/
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);
 void			sort_hundreds(t_list **stack_a, t_list **stack_b);
-void			big_push(t_list **stack_a, t_list **stack_b, int moves_a,
-					int moves_b);
+void			sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b,
+					int size_a);
 int				get_tail(t_list *stack_a, t_atb seq);
 /*sort_utils_extra*/
 int				push_and_update(t_list **stk_a, t_list **stk_b, int size,
@@ -102,10 +100,9 @@ void			push_opposites(t_list **stk_a, int mv_a, t_list **stk_b,
 					int mv_b);
 /* optmizing */
 int				check_next(t_list *stack_a, t_atb seq, int round, int size_a);
+int				get_round(int i, int size_a, int round);
 int				update_counter(t_list *temp, t_list *next, int i);
 int				update_next(t_list *temp, t_list **next, t_atb seq, int i);
 void			check_skip_sequence(t_list **node, t_atb seq);
-void			sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b,
-					int size_a);
 
 #endif

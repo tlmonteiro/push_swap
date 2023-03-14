@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:28:38 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/13 17:30:42 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:24:29 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 			i = lstsize(*stack_a) - seq.x;
 			while (i--)
 			{
-				if (lstsize(*stack_a) == seq.x + 1 && (*stack_a)->next->value == seq.y)
+				if (lstsize(*stack_a) == seq.x + 1
+					&& (*stack_a)->next->value == seq.y)
 					push(stack_a, stack_b, 'b');
 				if ((*stack_a)->rank == tail)
 					break ;
@@ -48,7 +49,8 @@ void	pivot_with_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
 					push(stack_a, stack_b, 'b');
 			}
 			round = check_next(*stack_a, seq, 1, size_a);
-			if ((*stack_a)->next->rank == tail || (*stack_a)->rank == tail || (*stack_a)->prev->rank == tail)
+			if ((*stack_a)->next->rank == tail || (*stack_a)->rank == tail
+				|| (*stack_a)->prev->rank == tail)
 				break ;
 		}
 	}

@@ -6,12 +6,13 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:26:53 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/13 10:56:57 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:16:45 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int		get_round(int i, int size_a, int round);
 int		update_counter(t_list *temp, t_list *next, int i);
 int		update_next(t_list *temp, t_list **next, t_atb seq, int i);
 void	check_skip_sequence(t_list **node, t_atb seq);
@@ -41,6 +42,12 @@ int	check_next(t_list *stack_a, t_atb seq, int round, int size_a)
 		if (temp == head || lstsize(stack_a) <= seq.x + 2)
 			break ;
 	}
+	round = get_round(i, size_a, round);
+	return (round);
+}
+
+int	get_round(int i, int size_a, int round)
+{
 	while (i > (size_a * round) / PIVOT)
 		round++;
 	return (round);
@@ -80,12 +87,5 @@ void	check_skip_sequence(t_list **node, t_atb seq)
 		while (i--)
 			*node = (*node)->next;
 	}
-	return ;
-}
-
-void	sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b, int size_a)
-{
-	if ((*stack_a)->value == seq.y)
-		pivot_with_seq(seq, stack_a, stack_b, size_a);
 	return ;
 }
