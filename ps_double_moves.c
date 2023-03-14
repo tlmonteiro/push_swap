@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:38:23 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/08 15:24:25 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:13:18 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,14 @@ void	double_reverse_rotate(t_list **stack_a, t_list **stack_b)
 	reverse_rotate(stack_a, 'r');
 	reverse_rotate(stack_b, 'r');
 	write(1, "rrr\n", 4);
+	return ;
+}
+
+void	update_stack(t_list **stack_a, t_list **stack_b, int size_a, int r)
+{
+	if ((*stack_a)->rank <= (size_a * r) / PIVOT)
+		push(stack_a, stack_b, 'b');
+	else
+		rotate(stack_a, 'a');
 	return ;
 }

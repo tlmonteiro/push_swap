@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 11:46:59 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/13 11:38:46 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:13:28 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,7 @@ void	push_many(t_list **stack_a, t_list **stack_b, int size_a)
 		while (i--)
 		{
 			if ((*stack_a)->value != seq.y)
-			{
-				if ((*stack_a)->rank <= (size_a * round) / PIVOT)
-					push(stack_a, stack_b, 'b');
-				else
-					rotate(stack_a, 'a');
-			}
+				update_stack(stack_a, stack_b, size_a, round);
 			if ((*stack_a)->value == seq.y)
 				break ;
 		}

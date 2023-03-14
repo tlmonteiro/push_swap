@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:52:48 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/14 15:17:02 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:13:23 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void			push_swap(char **argv, int argc);
 void			choose_sorting(int argc, t_list **stack_a, t_list **stack_b);
 void			pivoting(t_list **stack_a, t_list **stack_b);
 t_atb			update_seq(t_atb seq, int i, int value);
+void			move_seq(t_atb seq, t_list **stack_a, t_list **stack_b,
+					int size_a);
 /*ps_moves*/
 void			swap(t_list **stack, char letter);
 void			push(t_list **src, t_list **dest, char letter);
@@ -81,6 +83,8 @@ void			push_many(t_list **stack_a, t_list **stack_b, int size_a);
 void			double_swap(t_list **stack_a, t_list **stack_b);
 void			double_rotate(t_list **stack_a, t_list **stack_b);
 void			double_reverse_rotate(t_list **stack_a, t_list **stack_b);
+void			update_stack(t_list **stack_a, t_list **stack_b, int size_a,
+					int r);
 /*sorting*/
 void			sort_three(t_list **stack);
 void			sort_five(t_list **stack_a, t_list **stack_b);

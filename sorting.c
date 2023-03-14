@@ -6,7 +6,7 @@
 /*   By: tlemos-m <tlemos-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:57:36 by tlemos-m          #+#    #+#             */
-/*   Updated: 2023/03/14 14:59:23 by tlemos-m         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:46:29 by tlemos-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,19 @@ void	sort_hundreds(t_list **stack_a, t_list **stack_b)
 
 void	sequence_leap(t_atb seq, t_list **stack_a, t_list **stack_b, int size_a)
 {
+	int	new_size;
+
+	new_size = lstsize(*stack_a);
 	if ((*stack_a)->value == seq.y)
-		pivot_with_seq(seq, stack_a, stack_b, size_a);
+	{
+		if (seq.x <= (new_size / 2))
+		{
+			while (seq.x-- > 0)
+				rotate(stack_a, 'a');
+		}
+		else
+			pivot_with_seq(seq, stack_a, stack_b, size_a);
+	}
 	return ;
 }
 
